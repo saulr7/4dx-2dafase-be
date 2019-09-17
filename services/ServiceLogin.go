@@ -1,0 +1,30 @@
+package services
+
+import (
+	"encoding/json"
+	"errors"
+
+	"../config"
+	"../models"
+)
+
+func Login(credenciales models.UsuarioCredenciales) (string, error) {
+
+	var result models.Usuario
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("EXEC Usp_dbAuthUser ?, ?", credenciales.CodigoEmpleado, credenciales.Password).Scan(&result)
+
+	if result.Empleado == 0 {
+		return "", errors.New("Credenciales incorrectas")
+	}
+
+	json.Marshal(&result)
+
+	token, _ := Create_JWT(result)
+
+	return token, nil
+
+}
