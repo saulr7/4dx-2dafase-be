@@ -1,7 +1,6 @@
 package server
 
 import (
-	"fmt"
 	"net/http"
 
 	"../routes"
@@ -20,7 +19,6 @@ func Serve() {
 func CORS(h http.Handler) http.Handler {
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(r)
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -28,7 +26,6 @@ func CORS(h http.Handler) http.Handler {
 		w.Header().Set("Access-Control-Allow-Headers", "*")
 
 		if r.Method == "OPTIONS" {
-			fmt.Println("If")
 			w.Header().Set("Access-Control-Allow-Credentials", "true")
 			w.Header().Set("Access-Control-Allow-Methods", "GET,POST, OPTIONS")
 			w.Header().Add("Access-Control-Allow-Origin", "*")
@@ -42,7 +39,6 @@ func CORS(h http.Handler) http.Handler {
 			w.WriteHeader(http.StatusOK)
 			return
 		} else {
-			fmt.Println("Else")
 			h.ServeHTTP(w, r)
 		}
 	})

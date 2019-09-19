@@ -48,7 +48,6 @@ func IsLogginMiddleWare(next http.Handler) http.Handler {
 
 		enableCors(&w)
 
-		fmt.Println(r.Header)
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
 		w.Header().Set("Access-Control-Allow-Methods", "GET,POST")
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -59,7 +58,6 @@ func IsLogginMiddleWare(next http.Handler) http.Handler {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-CSRF-Token, Authorization, X-Requested-With, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, Screen")
 
-		fmt.Println(r)
 		notAuth := []string{"/login"}
 		requestPath := r.URL.Path
 

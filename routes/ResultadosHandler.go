@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	
+
 	"../models"
 	"../services"
 	"github.com/gorilla/mux"
@@ -36,7 +36,6 @@ func GetResultados(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, string(response))
 }
 
-
 func ResultadosUpdate(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
@@ -46,6 +45,7 @@ func ResultadosUpdate(w http.ResponseWriter, r *http.Request) {
 	var updatedResultados models.Resultados
 
 	err := json.NewDecoder(r.Body).Decode(&updatedResultados)
+	fmt.Println(updatedResultados)
 
 	if err != nil {
 		fmt.Println(err)
