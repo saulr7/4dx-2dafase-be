@@ -1,9 +1,11 @@
 package services
 
-import("../models"
-"../config"
+import (
+	"../config"
+	"../models"
 
-"time")
+	"time"
+)
 
 func GetResultadosMCI(idMCI string) ([]models.ResultadosMCI, error) {
 
@@ -17,17 +19,16 @@ func GetResultadosMCI(idMCI string) ([]models.ResultadosMCI, error) {
 	return result, nil
 }
 
-
-func ResultadosMCIUpdate(Modelo models.ResultadosMCI)(models.ResultadosMCI, error){
+func ResultadosMCIUpdate(Modelo models.ResultadosMCI) (models.ResultadosMCI, error) {
 
 	var updatedResultado models.ResultadosMCI
 
 	db := config.ConnectDB()
 	defer db.Close()
 
-	db.Where("idResultado = ?", Modelo.IdResultadoMCI).Find(&updatedResultado)
+	db.Where("idResultadoMCI = ?", Modelo.IdResultadoMCI).Find(&updatedResultado)
 
-	db.Model(&updatedResultado).Where("idResultado= ?", Modelo.IdResultadoMCI).Update(models.ResultadosMCI{Valor: Modelo.Valor, FechaModificacion: time.Now()})
+	db.Model(&updatedResultado).Where("idResultadoMCI= ?", Modelo.IdResultadoMCI).Update(models.ResultadosMCI{Valor: Modelo.Valor, FechaModificacion: time.Now()})
 
 	return updatedResultado, nil
 
