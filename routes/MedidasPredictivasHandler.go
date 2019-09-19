@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 
-	//"../models"
 	"../services"
 	"github.com/gorilla/mux"
 )
