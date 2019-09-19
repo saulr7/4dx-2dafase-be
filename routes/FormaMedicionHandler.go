@@ -1,25 +1,22 @@
 package routes
 
-import (	
+import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+
 	"../services"
 )
 
 func GetMediciones(w http.ResponseWriter, r *http.Request) {
-	
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")	
-	
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
 	w.Header().Set("Access-Control-Expose-Headers: Content-Length", "X-JSON")
-	
+
 	w.Header().Set("Access-Control-Allow-Headers", "*")
 	w.Header().Set("Content-type", "Application/json")
 
-	fmt.Println("GeMediciones Handler")
-
-	fmt.Println(r)
-	
 	var usuarioModel, erro = services.GetMediciones()
 
 	if erro != nil {

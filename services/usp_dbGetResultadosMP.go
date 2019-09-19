@@ -1,12 +1,9 @@
 package services
 
 import (
-	
-	//"fmt"
 	"../config"
 	"../models"
 )
-
 
 func GetResultados(idMP string) ([]models.Resultados, error) {
 
@@ -14,8 +11,8 @@ func GetResultados(idMP string) ([]models.Resultados, error) {
 
 	db := config.ConnectDB()
 	defer db.Close()
-   
-	db.Raw("EXEC usp_dbGetResultadosMP ?", idMP).Scan(&result)	
 
-   return result, nil	
+	db.Raw("EXEC usp_dbGetResultadosMP ?", idMP).Scan(&result)
+
+	return result, nil
 }
