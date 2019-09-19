@@ -61,8 +61,6 @@ func IsLogginMiddleWare(next http.Handler) http.Handler {
 		notAuth := []string{"/login"}
 		requestPath := r.URL.Path
 
-		fmt.Println(requestPath)
-
 		for _, value := range notAuth {
 			if value == requestPath {
 				next.ServeHTTP(w, r)
@@ -75,7 +73,6 @@ func IsLogginMiddleWare(next http.Handler) http.Handler {
 		splitToken := strings.Split(reqToken, "Bearer")
 		if len(splitToken) != 2 {
 			w.WriteHeader(http.StatusUnauthorized)
-			fmt.Println("Aq")
 			fmt.Fprintln(w, "No se ha proporcionado el token")
 			return
 		}
@@ -108,6 +105,5 @@ func IsLogginMiddleWare(next http.Handler) http.Handler {
 }
 
 func enableCors(w *http.ResponseWriter) {
-	fmt.Println("enale")
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }
