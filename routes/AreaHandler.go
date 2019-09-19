@@ -41,8 +41,6 @@ func AreaOneHandler(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	IdArea := vars["key"]
 
-	fmt.Println(IdArea)
-
 	var area, err = services.AreaGetOne(IdArea)
 
 	if err != nil {
@@ -77,7 +75,6 @@ func AreaCreateHandler(w http.ResponseWriter, r *http.Request) {
 	var area, err2 = services.AreaCreate(newArea)
 
 	if err2 != nil {
-		fmt.Println(err)
 		w.WriteHeader(http.StatusBadRequest)
 		fmt.Fprintln(w, "No se ha podido obtener la data")
 		return

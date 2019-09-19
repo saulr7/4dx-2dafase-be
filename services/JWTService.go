@@ -60,7 +60,7 @@ func IsLogginMiddleWare(next http.Handler) http.Handler {
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-CSRF-Token, Authorization, X-Requested-With, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, Screen")
 
 		fmt.Println(r)
-		notAuth := []string{"/login", "/home", "/otro", "/GetMedidasPredictivas"}
+		notAuth := []string{"/login"}
 		requestPath := r.URL.Path
 
 		fmt.Println(requestPath)
@@ -73,9 +73,6 @@ func IsLogginMiddleWare(next http.Handler) http.Handler {
 		}
 
 		reqToken := r.Header.Get("Authorization")
-
-		fmt.Println("El Tokeeen")
-		fmt.Println(reqToken)
 
 		splitToken := strings.Split(reqToken, "Bearer")
 		if len(splitToken) != 2 {
