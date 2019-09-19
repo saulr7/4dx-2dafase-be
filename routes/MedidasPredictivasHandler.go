@@ -1,6 +1,6 @@
 package routes
 
-import (	
+import (
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -11,13 +11,18 @@ import (
 )
 
 func GetMedidasPredictivas(w http.ResponseWriter, r *http.Request) {
-	
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")	
-	
+
+	enableCors(&w)
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+
 	w.Header().Set("Access-Control-Expose-Headers: Content-Length", "X-JSON")
-	
+
 	w.Header().Set("Access-Control-Allow-Headers", "*")
 	w.Header().Set("Content-type", "Application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+
+	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Application/json")
 
 	fmt.Println("GetMedidasPredictivas")
 
@@ -38,4 +43,9 @@ func GetMedidasPredictivas(w http.ResponseWriter, r *http.Request) {
 	response, _ := json.Marshal(&usuarioModel)
 
 	fmt.Fprintf(w, string(response))
+}
+
+func enableCors(w *http.ResponseWriter) {
+	fmt.Println("enale")
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }

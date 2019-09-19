@@ -46,8 +46,24 @@ func IsLogginMiddleWare(next http.Handler) http.Handler {
 
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
-		notAuth := []string{"/login", "/home", "/otro"}
+		enableCors(&w)
+
+		fmt.Println(r.Header)
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+		w.Header().Set("Access-Control-Allow-Methods", "GET,POST")
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		w.Header().Add("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Expose-Headers: Content-Length", "X-JSON")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-CSRF-Token, Authorization, X-Requested-With, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, Screen")
+
+		fmt.Println(r)
+		notAuth := []string{"/login", "/home", "/otro", "/GetMedidasPredictivas"}
 		requestPath := r.URL.Path
+
+		fmt.Println(requestPath)
 
 		for _, value := range notAuth {
 			if value == requestPath {
@@ -57,9 +73,14 @@ func IsLogginMiddleWare(next http.Handler) http.Handler {
 		}
 
 		reqToken := r.Header.Get("Authorization")
+
+		fmt.Println("El Tokeeen")
+		fmt.Println(reqToken)
+
 		splitToken := strings.Split(reqToken, "Bearer")
 		if len(splitToken) != 2 {
 			w.WriteHeader(http.StatusUnauthorized)
+			fmt.Println("Aq")
 			fmt.Fprintln(w, "No se ha proporcionado el token")
 			return
 		}
@@ -89,4 +110,9 @@ func IsLogginMiddleWare(next http.Handler) http.Handler {
 
 		next.ServeHTTP(w, r)
 	})
+}
+
+func enableCors(w *http.ResponseWriter) {
+	fmt.Println("enale")
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }
