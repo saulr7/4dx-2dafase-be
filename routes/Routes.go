@@ -22,6 +22,7 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/GetResultadosMCI/{idMCI}", GetResultadosMCI).Methods("GET")
 	myRouter.HandleFunc("/PeriodosPorMPNew", DBPeriodosPorMPInsert).Methods("POST")
 	myRouter.HandleFunc("/PeriodosPorMPUpdate", DBPeriodosPorMPUpdateHandler).Methods("POST")
+	myRouter.HandleFunc("/ResultadosUpdate", ResultadosUpdate).Methods("POST")
 
 	return myRouter
 }
