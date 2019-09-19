@@ -24,10 +24,6 @@ func GetMedidasPredictivas(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Application/json")
 
-	fmt.Println("GetMedidasPredictivas")
-
-	fmt.Println(r)
-
 	vars := mux.Vars(r)
 	idEmpleado := vars["codigoEmpleado"]
 

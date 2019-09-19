@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"net/http"
 
-	//"../models"
 	"../services"
 	"github.com/gorilla/mux"
 )
@@ -18,10 +17,6 @@ func GetResultados(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Access-Control-Allow-Headers", "*")
 	w.Header().Set("Content-type", "Application/json")
-
-	fmt.Println("ResultadosHandler")
-
-	fmt.Println(r)
 
 	vars := mux.Vars(r)
 	idMP := vars["idMP"]
