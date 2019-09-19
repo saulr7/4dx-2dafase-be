@@ -18,3 +18,16 @@ func DbPeriodoPorMPUPdate(Estructura models.DbPeriodoPorMP) (models.DbPeriodoPor
 
 	return updatedPeriodo, nil
 }
+
+
+func DbPeriodoPorMPAdd(Modelo models.DbPeriodoPorMP) (models.DbPeriodoPorMP, error) {
+
+	Modelo.IdPeriodo = 0
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Create(&Modelo)
+
+	return Modelo, nil
+}
