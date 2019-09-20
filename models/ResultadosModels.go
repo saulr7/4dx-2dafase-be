@@ -7,6 +7,7 @@ import (
 type Resultados struct {
 	IdResultado       int       `gorm:"column:idResultado"`
 	IdMP              int       `gorm:"column:idMP"`
+	MedidaPredictiva  string       `gorm:"column:MedidaPredictiva"`
 	IdFrecuencia              int       `gorm:"column:idFrecuencia"`
 	IdMedicion              int       `gorm:"column:idMedicion"`
 	Anio              int       `gorm:"column:Anio"`
