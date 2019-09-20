@@ -7,7 +7,7 @@ import (
 type Resultados struct {
 	IdResultado       int       `gorm:"column:idResultado"`
 	IdMP              int       `gorm:"column:idMP"`
-	MedidaPredictiva  string       `gorm:"column:MedidaPredictiva"`
+	MedidaPredictiva  string    `gorm:"column:MedidaPredictiva"`
 	IdFrecuencia      int       `gorm:"column:idFrecuencia"`
 	IdMedicion        int       `gorm:"column:idMedicion"`
 	Anio              int       `gorm:"column:Anio"`
@@ -15,9 +15,9 @@ type Resultados struct {
 	Semana            int       `gorm:"column:Semana"`
 	Dia               int       `gorm:"column:Dia"`
 	Valor             float32   `gorm:"column:Valor"`
-	LlegoAMeta         bool   `gorm:"column:LlegoAMeta"`
+	LlegoAMeta        bool      `gorm:"column:LlegoAMeta"`
 	FechaModificacion time.Time `gorm:"column:FechaModificacion"`
-	Autorizado bool   `gorm:"column:Autorizado"`
+	Autorizado        bool      `gorm:"column:Autorizado"`
 }
 
 func (Resultados) TableName() string {
