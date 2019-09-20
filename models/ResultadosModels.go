@@ -8,13 +8,14 @@ type Resultados struct {
 	IdResultado       int       `gorm:"column:idResultado"`
 	IdMP              int       `gorm:"column:idMP"`
 	MedidaPredictiva  string       `gorm:"column:MedidaPredictiva"`
-	IdFrecuencia              int       `gorm:"column:idFrecuencia"`
-	IdMedicion              int       `gorm:"column:idMedicion"`
+	IdFrecuencia      int       `gorm:"column:idFrecuencia"`
+	IdMedicion        int       `gorm:"column:idMedicion"`
 	Anio              int       `gorm:"column:Anio"`
 	Mes               int       `gorm:"column:Mes"`
 	Semana            int       `gorm:"column:Semana"`
 	Dia               int       `gorm:"column:Dia"`
 	Valor             float32   `gorm:"column:Valor"`
+	LlegoAMeta         bool   `gorm:"column:LlegoAMeta"`
 	FechaModificacion time.Time `gorm:"column:FechaModificacion"`
 }
 
