@@ -57,7 +57,7 @@ func DBPeriodosPorMPUpdateHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var area, err2 = services.DbPeriodoPorMPAdd(updatedTabla)
+	var area, err2 = services.DbPeriodoPorMPUPdate(updatedTabla)
 
 	if err2 != nil {
 		fmt.Println(err)
