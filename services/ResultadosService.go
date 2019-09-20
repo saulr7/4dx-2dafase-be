@@ -33,4 +33,5 @@ func ResultadosUpdate(Modelo models.Resultados) (models.Resultados, error) {
 	db.Model(&updatedResultado).Where("idResultado= ?", Modelo.IdResultado).Update(map[string]interface{}{"Valor": Modelo.Valor, "FechaModificacion": time.Now(), "LlegoAMeta": Modelo.LlegoAMeta})
 
 	return updatedResultado, nil
+
 }
