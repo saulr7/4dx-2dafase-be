@@ -22,14 +22,14 @@ func GetResultadosMCI(idMCI string) ([]models.ResultadosMCI, error) {
 func ResultadosMCIUpdate(Modelo models.ResultadosMCI) (models.ResultadosMCI, error) {
 
 	var updatedResultado models.ResultadosMCI
-
+	if Modelo.Autorizado == true{
 	db := config.ConnectDB()
 	defer db.Close()
 
 	db.Where("idResultadoMCI = ?", Modelo.IdResultadoMCI).Find(&updatedResultado)
 
 	db.Model(&updatedResultado).Where("idResultadoMCI= ?", Modelo.IdResultadoMCI).Update(models.ResultadosMCI{Valor: Modelo.Valor, FechaModificacion: time.Now()})
-
+	}
 	return updatedResultado, nil
 
 }

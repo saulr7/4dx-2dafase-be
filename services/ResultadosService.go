@@ -23,6 +23,7 @@ func GetResultados(idMP string) ([]models.Resultados, error) {
 func ResultadosUpdate(Modelo models.Resultados)(models.Resultados, error){
 
 	var updatedResultado models.Resultados
+	if Modelo.Autorizado == true{
 
 	db := config.ConnectDB()
 	defer db.Close()
@@ -31,6 +32,7 @@ func ResultadosUpdate(Modelo models.Resultados)(models.Resultados, error){
 
 	db.Model(&updatedResultado).Where("idResultado= ?", Modelo.IdResultado).Update(models.Resultados{Valor: Modelo.Valor, FechaModificacion: time.Now(), LlegoAMeta: Modelo.LlegoAMeta})
 
+	
+	}
 	return updatedResultado, nil
-
 }

@@ -11,6 +11,7 @@ type ResultadosMCI struct {
 	Anio              int       `gorm:"column:Anio"`
 	Mes               int       `gorm:"column:Mes"`
 	Valor             float32   `gorm:"column:Valor"`
+	Autorizado bool   `gorm:"column:Autorizado"`
 	FechaModificacion time.Time `gorm:"column:FechaModificacion"`
 }
 

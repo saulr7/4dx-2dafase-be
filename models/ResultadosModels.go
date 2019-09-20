@@ -17,6 +17,7 @@ type Resultados struct {
 	Valor             float32   `gorm:"column:Valor"`
 	LlegoAMeta         bool   `gorm:"column:LlegoAMeta"`
 	FechaModificacion time.Time `gorm:"column:FechaModificacion"`
+	Autorizado bool   `gorm:"column:Autorizado"`
 }
 
 func (Resultados) TableName() string {
