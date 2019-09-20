@@ -5,6 +5,7 @@ import (
 	"../models"
 
 	"time"
+	"errors"
 )
 
 func GetResultados(idMP string) ([]models.Resultados, error) {
@@ -23,6 +24,7 @@ func GetResultados(idMP string) ([]models.Resultados, error) {
 func ResultadosUpdate(Modelo models.Resultados)(models.Resultados, error){
 
 	var updatedResultado models.Resultados
+
 	if Modelo.Autorizado == true{
 
 	db := config.ConnectDB()
@@ -31,8 +33,10 @@ func ResultadosUpdate(Modelo models.Resultados)(models.Resultados, error){
 	db.Where("idResultado = ?", Modelo.IdResultado).Find(&updatedResultado)
 
 	db.Model(&updatedResultado).Where("idResultado= ?", Modelo.IdResultado).Update(models.Resultados{Valor: Modelo.Valor, FechaModificacion: time.Now(), LlegoAMeta: Modelo.LlegoAMeta})
-
+	return updatedResultado, nil	
+}else{
+	return updatedResultado, errors.New("No autorizado para almacenar")	
+}
 	
-	}
-	return updatedResultado, nil
+	
 }
