@@ -18,3 +18,9 @@ type ResultadosMCI struct {
 func (ResultadosMCI) TableName() string {
 	return "dbResultadosMCI"
 }
+
+type GraficaMCI struct {
+	Label 	string  `gorm:"column:Label"`	
+    Valor 	float32  `gorm:"column:Valor"`	
+}
+
