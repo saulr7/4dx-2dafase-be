@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"net/http"
 
+	"../models"
 	"../services"
 	"github.com/gorilla/mux"
-	"../models"
 )
 
 func GetResultadosMCI(w http.ResponseWriter, r *http.Request) {

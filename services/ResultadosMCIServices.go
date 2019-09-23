@@ -1,11 +1,12 @@
 package services
 
 import (
+	"fmt"
+
 	"../config"
 	"../models"
 
 	"time"
-	"errors"
 )
 
 func GetResultadosMCI(idMCI string) ([]models.ResultadosMCI, error) {
@@ -23,21 +24,21 @@ func GetResultadosMCI(idMCI string) ([]models.ResultadosMCI, error) {
 func ResultadosMCIUpdate(Modelo models.ResultadosMCI) (models.ResultadosMCI, error) {
 
 	var updatedResultado models.ResultadosMCI
-	
-	
-	 if Modelo.Autorizado == true{
-	 	db := config.ConnectDB()
-	 	defer db.Close()
-		 
-		 db.Where("idResultadoMCI = ?", Modelo.IdResultadoMCI).Find(&updatedResultado)
 
-	 	db.Model(&updatedResultado).Where("idResultadoMCI= ?", Modelo.IdResultadoMCI).Update(models.ResultadosMCI{Valor: Modelo.Valor, FechaModificacion: time.Now(), Autorizado : Modelo.Autorizado})
-	
-		return updatedResultado, nil	
-	 }else{
-		 return updatedResultado, errors.New("no autorizado para almacenar")
-		}
+	//  if Modelo.Autorizado == true{
+	db := config.ConnectDB()
+	defer db.Close()
 
-	
-	 //return updatedResultado, nil			
+	fmt.Println("Llego")
+
+	db.Where("idResultadoMCI = ?", Modelo.IdResultadoMCI).Find(&updatedResultado)
+
+	db.Model(&updatedResultado).Where("idResultadoMCI= ?", Modelo.IdResultadoMCI).Update(models.ResultadosMCI{Valor: Modelo.Valor, FechaModificacion: time.Now(), Autorizado: Modelo.Autorizado})
+
+	return updatedResultado, nil
+	//  }else{
+	// 	 return updatedResultado, errors.New("no autorizado para almacenar")
+	// 	}
+
+	//return updatedResultado, nil
 }
