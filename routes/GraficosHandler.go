@@ -30,7 +30,7 @@ func TipoGraficosHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, string(response))
 }
 
-func GraficoPorMCIHandler(w http.ResponseWriter, r *http.Request) {
+func GraficoPorMCINewHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
