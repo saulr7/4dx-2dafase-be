@@ -24,3 +24,9 @@ type GraficaMCI struct {
     Valor 	float32  `gorm:"column:Valor"`	
 }
 
+type PeriodicidadMCI struct{
+	IdPeriodicidad    int       `gorm:"column:idPeriodicidad"`
+	Descripcion       string       `gorm:"column:Descripcion"`
+	MesesPorAnio      string       `gorm:"column:MesesPorAnio"`
+}
+

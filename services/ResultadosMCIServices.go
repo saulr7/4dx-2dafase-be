@@ -36,9 +36,16 @@ func ResultadosMCIUpdate(Modelo models.ResultadosMCI) (models.ResultadosMCI, err
 	db.Model(&updatedResultado).Where("idResultadoMCI= ?", Modelo.IdResultadoMCI).Update(models.ResultadosMCI{Valor: Modelo.Valor, FechaModificacion: time.Now(), Autorizado: Modelo.Autorizado})
 
 	return updatedResultado, nil
-	//  }else{
-	// 	 return updatedResultado, errors.New("no autorizado para almacenar")
-	// 	}
+}
 
-	//return updatedResultado, nil
+func GetPeriodicidadMCI() ([]models.PeriodicidadMCI, error) {
+
+	var result []models.PeriodicidadMCI
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("EXEC usp_dbGetPeriodicidadMCI").Scan(&result)
+
+	return result, nil
 }

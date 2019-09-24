@@ -19,11 +19,8 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/ResultadosUpdate", ResultadosUpdate).Methods("POST")
 	myRouter.HandleFunc("/ResultadosMCIUpdate", ResultadosMCIUpdate).Methods("POST")
 	myRouter.HandleFunc("/TipoGraficos", TipoGraficosHandler).Methods("GET")
-<<<<<<< HEAD
+	myRouter.HandleFunc("/GetPeriodicidadMCI", GetPeriodicidadMCI)
 	myRouter.HandleFunc("/GetResultadosGraficaMCI/{IdMCI} {Anio}", GetResultadosGraficaMCI).Methods("GET")
-=======
-	myRouter.HandleFunc("/GetResultadosGraficaMCI/{TipoGrafico}/{IdMCI}/{Anio}", GetResultadosGraficaMCI).Methods("GET")
->>>>>>> 97078461f721a6daba7838cda042424a249e1418
 	myRouter.HandleFunc("/GraficoPorMCINew", GraficoPorMCINewHandler).Methods("POST")
 	return myRouter
 }
