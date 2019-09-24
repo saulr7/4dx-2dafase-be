@@ -21,4 +21,5 @@ type PeriodoPorMCI struct {
 	IdPeriodo    int `gorm:"AUTO_INCREMENT;column:idPeriodo"`
 	IdMCI         int `gorm:"column:idMCI"`
 	IdFrecuencia int `gorm:"column:idFrecuencia"`	
+	Meta float32 `gorm:"column:Meta"`	
 }
