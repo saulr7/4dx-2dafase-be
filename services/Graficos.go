@@ -1,7 +1,9 @@
 package services
 
-import("../models"
-"../config")
+import (
+	"../config"
+	"../models"
+)
 
 func GraficoPorMCICreate(Modelo models.GraficoPorMCI) (models.GraficoPorMCI, error) {
 

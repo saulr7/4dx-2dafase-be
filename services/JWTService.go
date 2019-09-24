@@ -21,7 +21,7 @@ var jwtKey = []byte("my_secret_key")
 
 func Create_JWT(usuario models.Usuario) (string, error) {
 
-	expirationTime := time.Now().Add(60 * time.Minute)
+	expirationTime := time.Now().Add(480 * time.Minute)
 
 	claims := &Claims{
 		Usuario: usuario,
