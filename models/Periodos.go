@@ -19,6 +19,10 @@ func (DbPeriodoPorMP) TableName() string {
 type PeriodoPorMCI struct {
 	// gorm.Model
 	IdPeriodo    int `gorm:"AUTO_INCREMENT;column:idPeriodo"`
-	IdMCI         int `gorm:"column:idMCI"`
-	IdFrecuencia int `gorm:"column:idFrecuencia"`	
+	IdMCI        int `gorm:"column:idMCI"`
+	IdFrecuencia int `gorm:"column:idFrecuencia"`
+}
+
+func (PeriodoPorMCI) TableName() string {
+	return "dbPeriodoPorMCI"
 }

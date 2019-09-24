@@ -18,7 +18,7 @@ func ColaboradoresPorArea(AreaId string) ([]models.Colaborador, error) {
 
 	var codigos []int
 
-	db.Raw("SELECT idColaborador FROM EquiposSubAreas WHERE idSubArea = ?", AreaId).Pluck("age", &codigos)
+	db.Raw("SELECT idColaborador FROM EquiposSubAreas WHERE idSubArea = ?", AreaId).Pluck("idColaborador", &codigos)
 
 	db.Where("idColaborador IN (?)", codigos).Find(&colaborador)
 
