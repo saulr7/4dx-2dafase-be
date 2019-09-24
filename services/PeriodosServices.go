@@ -31,3 +31,15 @@ func DbPeriodoPorMPAdd(Modelo models.DbPeriodoPorMP) (models.DbPeriodoPorMP, err
 
 	return Modelo, nil
 }
+
+func PeriodoPorMCIAdd(Modelo models.PeriodoPorMCI) (models.PeriodoPorMCI, error) {
+
+	Modelo.IdPeriodo = 0
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Create(&Modelo)
+
+	return Modelo, nil
+}
