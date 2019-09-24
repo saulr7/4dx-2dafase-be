@@ -9,12 +9,6 @@ func Routes() *mux.Router {
 	myRouter := mux.NewRouter()
 
 	myRouter.HandleFunc("/login", LoginHandler)
-	myRouter.HandleFunc("/home", HomeHandler).Methods("GET")
-	myRouter.HandleFunc("/areas", AreaGetAllHandler).Methods("GET")
-	myRouter.HandleFunc("/area/{key}", AreaOneHandler).Methods("GET")
-	myRouter.HandleFunc("/areaNew", AreaCreateHandler).Methods("POST")
-	myRouter.HandleFunc("/areaUpdate", AreaUpdateHandler).Methods("POST")
-	myRouter.HandleFunc("/areaDelete/{key}", AreaDeleteHandler).Methods("GET")
 	myRouter.HandleFunc("/GetMedidasPredictivas/{codigoEmpleado}", GetMedidasPredictivas).Methods("GET")
 	myRouter.HandleFunc("/GetFrecuencias", GetFrecuencias)
 	myRouter.HandleFunc("/GetMediciones", GetMediciones)
@@ -25,7 +19,11 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/ResultadosUpdate", ResultadosUpdate).Methods("POST")
 	myRouter.HandleFunc("/ResultadosMCIUpdate", ResultadosMCIUpdate).Methods("POST")
 	myRouter.HandleFunc("/TipoGraficos", TipoGraficosHandler).Methods("GET")
+<<<<<<< HEAD
 	myRouter.HandleFunc("/GetResultadosGraficaMCI/{IdMCI} {Anio}", GetResultadosGraficaMCI).Methods("GET")
+=======
+	myRouter.HandleFunc("/GetResultadosGraficaMCI/{TipoGrafico}/{IdMCI}/{Anio}", GetResultadosGraficaMCI).Methods("GET")
+>>>>>>> 97078461f721a6daba7838cda042424a249e1418
 	myRouter.HandleFunc("/GraficoPorMCINew", GraficoPorMCINewHandler).Methods("POST")
 	return myRouter
 }

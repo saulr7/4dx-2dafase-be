@@ -37,7 +37,9 @@ func GetMedidasPredictivas(w http.ResponseWriter, r *http.Request) {
 
 	response, _ := json.Marshal(&usuarioModel)
 
-	fmt.Fprintf(w, string(response))
+	responseString := string(response)
+
+	fmt.Fprint(w, responseString)
 }
 
 func enableCors(w *http.ResponseWriter) {

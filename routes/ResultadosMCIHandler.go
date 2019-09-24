@@ -35,7 +35,9 @@ func GetResultadosMCI(w http.ResponseWriter, r *http.Request) {
 
 	response, _ := json.Marshal(&Resultados)
 
-	fmt.Fprintf(w, string(response))
+	responseString := string(response)
+
+	fmt.Fprint(w, responseString)
 }
 
 func ResultadosMCIUpdate(w http.ResponseWriter, r *http.Request) {
@@ -66,14 +68,13 @@ func ResultadosMCIUpdate(w http.ResponseWriter, r *http.Request) {
 
 	response, _ := json.Marshal(Resultado)
 
-	fmt.Fprintf(w, string(response))
+	responseString := string(response)
+
+	fmt.Fprint(w, responseString)
 }
 
-
-
 func GetResultadosGraficaMCI(w http.ResponseWriter, r *http.Request) {
-	//fmt.println("GetResultadosGraficaMCI handler")
-	//fmt.Println("Prueba");
+
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.Header().Set("Access-Control-Expose-Headers: Content-Length", "X-JSON")
 	w.Header().Set("Access-Control-Allow-Headers", "*")
@@ -83,11 +84,6 @@ func GetResultadosGraficaMCI(w http.ResponseWriter, r *http.Request) {
 	TipoGrafico := vars["TipoGrafico"]
 	IdMCI := vars["IdMCI"]
 	Anio := vars["Anio"]
-
-	fmt.Println("variables");
-	//fmt.Println(TipoGrafico);
-	//fmt.Println(IdMCI);
-	fmt.Println(Anio);
 
 	var Resultados, erro = services.GetGraficaMCI(TipoGrafico, IdMCI, Anio)
 
@@ -100,5 +96,7 @@ func GetResultadosGraficaMCI(w http.ResponseWriter, r *http.Request) {
 
 	response, _ := json.Marshal(&Resultados)
 
-	fmt.Fprintf(w, string(response))
+	responseString := string(response)
+
+	fmt.Fprint(w, responseString)
 }
