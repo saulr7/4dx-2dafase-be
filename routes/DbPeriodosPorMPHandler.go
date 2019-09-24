@@ -37,7 +37,9 @@ func DBPeriodosPorMPInsert(w http.ResponseWriter, r *http.Request) {
 
 	response, _ := json.Marshal(dbPeriodo)
 
-	fmt.Fprintf(w, string(response))
+	responseString := string(response)
+
+	fmt.Fprint(w, responseString)
 }
 
 func DBPeriodosPorMPUpdateHandler(w http.ResponseWriter, r *http.Request) {
@@ -68,5 +70,7 @@ func DBPeriodosPorMPUpdateHandler(w http.ResponseWriter, r *http.Request) {
 
 	response, _ := json.Marshal(area)
 
-	fmt.Fprintf(w, string(response))
+	responseString := string(response)
+
+	fmt.Fprint(w, responseString)
 }
