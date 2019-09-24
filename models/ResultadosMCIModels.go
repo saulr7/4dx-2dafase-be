@@ -14,6 +14,7 @@ type ResultadosMCI struct {
 	Unidad             string   `gorm:"column:Unidad"`
 	Autorizado bool   `gorm:"column:Autorizado"`
 	FechaModificacion time.Time `gorm:"column:FechaModificacion"`
+	Meta float32 `gorm:"column:Meta"`	
 }
 
 func (ResultadosMCI) TableName() string {
