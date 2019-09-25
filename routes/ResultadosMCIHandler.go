@@ -158,3 +158,36 @@ func ResultadosMCICreate(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprint(w, responseString)
 }
+
+func MetaMCIAdd(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-type", "Application/json")
+
+	var updatedResultados models.ResultadosMCI
+
+	err := json.NewDecoder(r.Body).Decode(&updatedResultados)
+
+	if err != nil {
+		fmt.Println(err)
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, "Datos incorrectos")
+		return
+	}
+
+	var Resultado, err2 = services.MetaMCIAdd(updatedResultados)
+
+	if err2 != nil {
+		fmt.Println(err)
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, "No se ha podido obtener la data")
+		return
+	}
+
+	response, _ := json.Marshal(Resultado)
+
+	responseString := string(response)
+
+	fmt.Fprint(w, responseString)
+}
