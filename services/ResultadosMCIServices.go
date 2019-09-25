@@ -38,3 +38,16 @@ func ResultadosMCIUpdate(Modelo models.ResultadosMCI) (models.ResultadosMCI, err
 	return updatedResultado, nil
 }
 
+
+func ResultadosMCICreate(idMCI string) ([]models.ResultadosMCI, error) {
+
+	var result []models.ResultadosMCI
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("EXEC usp_dbCreaResultadosMCI ?", idMCI).Scan(&result)
+
+	return result, nil
+}
+
