@@ -43,3 +43,15 @@ func PeriodoPorMCIAdd(Modelo models.PeriodoPorMCI) (models.PeriodoPorMCI, error)
 
 	return Modelo, nil
 }
+
+func GetPeriodicidadMCI() ([]models.PeriodicidadMCI, error) {
+
+	var result []models.PeriodicidadMCI
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("EXEC usp_dbGetPeriodicidadMCI").Scan(&result)
+
+	return result, nil
+}

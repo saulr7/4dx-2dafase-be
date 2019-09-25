@@ -38,14 +38,3 @@ func ResultadosMCIUpdate(Modelo models.ResultadosMCI) (models.ResultadosMCI, err
 	return updatedResultado, nil
 }
 
-func GetPeriodicidadMCI() ([]models.PeriodicidadMCI, error) {
-
-	var result []models.PeriodicidadMCI
-
-	db := config.ConnectDB()
-	defer db.Close()
-
-	db.Raw("EXEC usp_dbGetPeriodicidadMCI").Scan(&result)
-
-	return result, nil
-}

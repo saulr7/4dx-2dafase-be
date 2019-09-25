@@ -30,5 +30,5 @@ type PeriodicidadMCI struct{
 	IdPeriodicidad    int       `gorm:"column:idPeriodicidad"`
 	Descripcion       string       `gorm:"column:Descripcion"`
 	MesesPorAnio      string       `gorm:"column:MesesPorAnio"`
+	Autorizado      bool       `gorm:"column:Autorizado"`
 }
-
