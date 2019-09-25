@@ -21,7 +21,7 @@ func GetResultadosMCI(idMCI string) ([]models.ResultadosMCI, error) {
 	return result, nil
 }
 
-func ResultadosMCIUpdate(Modelo models.ResultadosMCI) (models.ResultadosMCI, error) {
+func ValorMCIAdd(Modelo models.ResultadosMCI) (models.ResultadosMCI, error) {
 
 	var updatedResultado models.ResultadosMCI
 

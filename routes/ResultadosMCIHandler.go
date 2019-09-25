@@ -40,7 +40,7 @@ func GetResultadosMCI(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, responseString)
 }
 
-func ResultadosMCIUpdate(w http.ResponseWriter, r *http.Request) {
+func ValorMCIAdd(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
@@ -57,7 +57,7 @@ func ResultadosMCIUpdate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var Resultado, err2 = services.ResultadosMCIUpdate(updatedResultados)
+	var Resultado, err2 = services.ValorMCIAdd(updatedResultados)
 
 	if err2 != nil {
 		fmt.Println(err)
