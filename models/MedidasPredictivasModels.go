@@ -8,6 +8,7 @@ type GetMPbyMCI struct {
 	// gorm.Model
 	 IdMCI	        	int     `gorm:"column:idMCI"`
 	 IdMP	        	int 	`gorm:"column:idMP"`
+	 NombrePeriodicidad	  string 	`gorm:"column:NombrePeriodicidad"`
 	 IdPeriodo        	int 	`gorm:"column:idPeriodo"`
 	 IdFrecuencia      	int 	`gorm:"column:idFrecuencia"`
 	 IdMedicion        	int 	`gorm:"column:idMedicion"`

@@ -19,3 +19,17 @@ func GetMediciones() ([]models.Mediciones, error) {
 	return result, nil
 
 }
+
+func TipoGraficos() ([]models.TipoGrafico, error) {
+
+	var result []models.TipoGrafico
+
+	db := config.ConnectDB()
+	defer db.Close()
+	fmt.Println("Entra GetMediciones Servicio")
+	
+	db.Raw("EXEC usp_dbGetTipoGraficos").Scan(&result)
+
+   return result, nil
+
+}
