@@ -38,7 +38,6 @@ func ValorMCIAdd(Modelo models.ResultadosMCI) (models.ResultadosMCI, error) {
 	return updatedResultado, nil
 }
 
-
 func ResultadosMCICreate(idMCI string) ([]models.ResultadosMCI, error) {
 
 	var result []models.ResultadosMCI
