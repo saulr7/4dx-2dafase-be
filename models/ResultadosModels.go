@@ -15,6 +15,7 @@ type Resultados struct {
 	Semana            int       `gorm:"column:Semana"`
 	Dia               int       `gorm:"column:Dia"`
 	Valor             float32   `gorm:"column:Valor"`
+	Unidad            string   `gorm:"column:Unidad"`
 	LlegoAMeta        bool      `gorm:"column:LlegoAMeta"`
 	FechaModificacion time.Time `gorm:"column:FechaModificacion"`
 	Autorizado        bool      `gorm:"column:Autorizado"`
