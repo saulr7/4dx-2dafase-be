@@ -25,8 +25,6 @@ func TableroColaborador(colaboradorId string) ([]models.Tablero, error) {
 
 	db.Raw("EXEC usp_dbGetMedidasPorColaborador ?", colaboradorId).Scan(&result)
 
-	fmt.Println(result)
-
 	for _, dato := range result {
 
 		var resultadosMCI []models.ResultadoMCI

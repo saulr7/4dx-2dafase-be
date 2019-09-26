@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"../services"
+	"github.com/gorilla/mux"
 )
 
 func TableroColaborador(w http.ResponseWriter, r *http.Request) {
@@ -15,7 +16,10 @@ func TableroColaborador(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-type", "Application/json")
 
-	var tablero, err = services.TableroColaborador("39015")
+	vars := mux.Vars(r)
+	codigoEmpleado := vars["codigoEmpleado"]
+
+	var tablero, err = services.TableroColaborador(codigoEmpleado)
 
 	if err != nil {
 		fmt.Println(err)
