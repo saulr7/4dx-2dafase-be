@@ -26,6 +26,7 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/ColaboradoresPorArea/{AreaId}", ColaboradoresPorArea).Methods("GET")
 	myRouter.HandleFunc("/PeriodosPorMCIAdd", PeriodosPorMCIAdd).Methods("POST")
 	myRouter.HandleFunc("/ResultadosMCICreate/{idMCI}", ResultadosMCICreate).Methods("GET")
-	myRouter.HandleFunc("/MetaMCIAdd", MetaMCIAdd).Methods("POST")
+	myRouter.HandleFunc("/GetGraficoColaborador/{codigoEmpleado}", GetGraficoColaborador).Methods("GET")
+
 	return myRouter
 }
