@@ -1,13 +1,11 @@
 package services
 
 import (
-	"fmt"
-
 	"../config"
 	"../models"
 )
 
-func TableroColaborador(colaboradorId string) ([]models.Tablero, error) {
+func TableroColaborador(colaboradorId string, mesId string) ([]models.Tablero, error) {
 
 	var tableros []models.Tablero
 
@@ -34,6 +32,16 @@ func TableroColaborador(colaboradorId string) ([]models.Tablero, error) {
 		tablero.IdMCI = dato.IdMCI
 		tablero.MCI = dato.MCI
 
+		type Frecuencia struct {
+			FrecuenciaId int `gorm:"column:idFrecuencia"`
+		}
+
+		var frecuencia Frecuencia
+
+		db.Table("dbPeriodoPorMCI").Select("idFrecuencia").Where(" idMCI = ?", dato.IdMCI).Scan(&frecuencia)
+
+		tablero.Periodicidad = frecuencia.FrecuenciaId
+
 		db.Raw("SELECT Mes, Valor, Meta FROM dbResultadosMCI where idMCI = ?", dato.IdMCI).Scan(&resultadosMCI)
 
 		for _, resultado := range resultadosMCI {
@@ -49,9 +57,18 @@ func TableroColaborador(colaboradorId string) ([]models.Tablero, error) {
 
 			var resultasdoMP []models.ResultadoMP
 
-			db.Raw("SELECT Valor, Unidad FROM dbResultados WHERE idMP = ?", medida.IdMP).Scan(&resultasdoMP)
+			var meta models.MedidaPredictiva
+			var metaMedicion models.MedidaPredictiva
 
-			fmt.Println(resultasdoMP)
+			db.Raw("SELECT Mes, Semana, Dia, Valor, Unidad, LlegoAMeta FROM dbResultados WHERE Mes = ? and idMP = ?", mesId, medida.IdMP).Scan(&resultasdoMP)
+
+			db.Table("LVMPCampos").Select("ValorCampo").Where(" CampoMP = 'ValorY' AND  idMP = ?", medida.IdMP).Scan(&meta)
+
+			db.Table("dbPeriodoPorMP").Select("idMedicion, idFrecuencia").Where(" idMP = ?", medida.IdMP).Scan(&metaMedicion)
+
+			medida.MetaMP = meta.MetaMP
+			medida.MedicionId = metaMedicion.MedicionId
+			medida.FrecuenciaId = metaMedicion.FrecuenciaId
 
 			for _, resulMP := range resultasdoMP {
 

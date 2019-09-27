@@ -18,8 +18,9 @@ func TableroColaborador(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
 	codigoEmpleado := vars["codigoEmpleado"]
+	mesId := vars["mesId"]
 
-	var tablero, err = services.TableroColaborador(codigoEmpleado)
+	var tablero, err = services.TableroColaborador(codigoEmpleado, mesId)
 
 	if err != nil {
 		fmt.Println(err)
