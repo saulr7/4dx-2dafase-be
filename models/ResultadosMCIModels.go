@@ -15,6 +15,7 @@ type ResultadosMCI struct {
 	Autorizado        bool      `gorm:"column:Autorizado"`
 	FechaModificacion time.Time `gorm:"column:FechaModificacion"`
 	Meta              float32   `gorm:"column:Meta"`
+	IdPeriocidad      int       `gorm:"column:idFrecuencia"`
 }
 
 func (ResultadosMCI) TableName() string {

@@ -18,6 +18,7 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/PeriodosPorMPUpdate", DBPeriodosPorMPUpdateHandler).Methods("POST")
 	myRouter.HandleFunc("/ResultadosUpdate", ResultadosUpdate).Methods("POST")
 	myRouter.HandleFunc("/ValorMCIAdd", ValorMCIAdd).Methods("POST")
+	myRouter.HandleFunc("/MetaMCIAdd", MetaMCIAdd).Methods("POST")
 	myRouter.HandleFunc("/TipoGraficos", TipoGraficosHandler).Methods("GET")
 	myRouter.HandleFunc("/GetPeriodicidadMCI", GetPeriodicidadMCI)
 	myRouter.HandleFunc("/GetResultadosGraficaMCI/{IdMCI}/{Anio}", GetResultadosGraficaMCI).Methods("GET")
@@ -27,6 +28,8 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/PeriodosPorMCIAdd", PeriodosPorMCIAdd).Methods("POST")
 	myRouter.HandleFunc("/ResultadosMCICreate/{idMCI}", ResultadosMCICreate).Methods("GET")
 	myRouter.HandleFunc("/GetGraficoColaborador/{codigoEmpleado}", GetGraficoColaborador).Methods("GET")
+	myRouter.HandleFunc("/TableroColaborador/{codigoEmpleado}", TableroColaborador).Methods("GET")
+	myRouter.HandleFunc("/TableroColaborador/{codigoEmpleado}/{mesId}", TableroColaborador).Methods("GET")
 
 	return myRouter
 }
