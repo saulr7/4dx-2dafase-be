@@ -20,6 +20,9 @@ type MedidaPredictiva struct {
 	MetaMP           float32 `gorm:"column:ValorCampo"`
 	MedicionId       int     `gorm:"column:idMedicion"`
 	FrecuenciaId     int     `gorm:"column:idFrecuencia"`
+	CriterioVerde    string  `gorm:"column:CriterioVerde"`
+	CriterioAmarillo string  `gorm:"column:CriterioAmarillo"`
+	CriterioRojo     string  `gorm:"column:CriterioRojo"`
 	ResultadosMP     []ResultadoMP
 }
 

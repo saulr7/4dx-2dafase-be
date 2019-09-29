@@ -21,8 +21,9 @@ func GetResultados(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
 	idMP := vars["idMP"]
+	mes := vars["mes"]
 
-	var Resultados, erro = services.GetResultados(idMP)
+	var Resultados, erro = services.GetResultados(idMP, mes)
 
 	if erro != nil {
 		fmt.Println(erro)
