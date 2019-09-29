@@ -7,14 +7,14 @@ import (
 	"time"
 )
 
-func GetResultados(idMP string) ([]models.Resultados, error) {
+func GetResultados(idMP string, mes string) ([]models.Resultados, error) {
 
 	var result []models.Resultados
 
 	db := config.ConnectDB()
 	defer db.Close()
 
-	db.Raw("EXEC usp_dbGetResultadosMP ?", idMP).Scan(&result)
+	db.Raw("EXEC usp_dbGetResultadosMP ?, ?", idMP, mes).Scan(&result)
 
 	return result, nil
 }
