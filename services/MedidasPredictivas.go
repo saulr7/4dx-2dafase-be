@@ -16,3 +16,15 @@ func GetMedidasPredictivas(idEmpleado string) ([]models.GetMPbyMCI, error) {
 
 	return result, nil
 }
+
+func GetMCIColaborador(idEmpleado string) ([]models.GetMPbyMCI, error) {
+
+	var result []models.GetMPbyMCI
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("EXEC usp_dbgMCIbyColaborador ?", idEmpleado).Scan(&result)
+
+	return result, nil
+}
