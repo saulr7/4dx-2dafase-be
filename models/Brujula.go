@@ -7,7 +7,3 @@ type Brujula struct {
 	Actividad     string `gorm:"column:Actividad"`
 	Estado        string `gorm:"column:Estado"`
 }
-
-func (Brujula) TableName() string {
-	return "dbBrujulaPorMP"
-}
