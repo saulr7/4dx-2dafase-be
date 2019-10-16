@@ -21,7 +21,6 @@ type Resultados struct {
 	FechaModificacion time.Time `gorm:"column:FechaModificacion"`
 	Autorizado        bool      `gorm:"column:Autorizado"`
 	Meta              float32   `gorm:"column:Meta"`
-	IdColaborador     int   	`gorm:"column:idColaborador"`
 }
 
 func (Resultados) TableName() string {
