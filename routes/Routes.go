@@ -32,5 +32,6 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/TableroColaborador/{codigoEmpleado}/{mesId}", TableroColaborador).Methods("GET")
 	myRouter.HandleFunc("/GetMCIColaborador/{codigoEmpleado}", GetMCI).Methods("GET")
 	myRouter.HandleFunc("/GetColaboradoresSubArea/{idSubArea}", GetColaboradoresSubArea).Methods("GET")
+	myRouter.HandleFunc("/BrujulaPorMPAdd", BrujulaPorMPCreate).Methods("POST")
 	return myRouter
 }
