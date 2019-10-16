@@ -9,6 +9,7 @@ func Routes() *mux.Router {
 	myRouter := mux.NewRouter()
 
 	myRouter.HandleFunc("/login", LoginHandler)
+	myRouter.HandleFunc("/loginWithToken", LoginWithToken)
 	myRouter.HandleFunc("/GetMedidasPredictivas/{codigoEmpleado}", GetMedidasPredictivas).Methods("GET")
 	myRouter.HandleFunc("/GetFrecuencias", GetFrecuencias)
 	myRouter.HandleFunc("/GetMediciones", GetMediciones)
@@ -30,8 +31,12 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/GetGraficoColaborador/{codigoEmpleado}", GetGraficoColaborador).Methods("GET")
 	myRouter.HandleFunc("/TableroColaborador/{codigoEmpleado}", TableroColaborador).Methods("GET")
 	myRouter.HandleFunc("/TableroColaborador/{codigoEmpleado}/{mesId}", TableroColaborador).Methods("GET")
+
+	myRouter.HandleFunc("/AutorizarResultado", AutorizarResultadoHandler).Methods("POST")
+
 	myRouter.HandleFunc("/GetMCIColaborador/{codigoEmpleado}", GetMCI).Methods("GET")
 	myRouter.HandleFunc("/GetColaboradoresSubArea/{idSubArea}", GetColaboradoresSubArea).Methods("GET")
 	myRouter.HandleFunc("/BrujulaPorMPAdd", BrujulaPorMPCreate).Methods("POST")
+
 	return myRouter
 }

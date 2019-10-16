@@ -1,8 +1,6 @@
 package services
 
 import (
-	"fmt"
-
 	"../config"
 	"../models"
 )
@@ -16,6 +14,7 @@ func TableroColaborador(colaboradorId string, mesId string) ([]models.Tablero, e
 		MCI              string `gorm:"column:MCI"`
 		IdMP             int    `gorm:"column:idMP"`
 		MedidaPredictiva string `gorm:"column:MedidaPredictiva "`
+		Orden            int    `gorm:"column:orden"`
 	}
 
 	var result []Result
@@ -23,17 +22,17 @@ func TableroColaborador(colaboradorId string, mesId string) ([]models.Tablero, e
 	db := config.ConnectDB()
 	defer db.Close()
 
-	db.Raw("EXEC usp_dbGetMedidasPorColaborador ?", colaboradorId).Scan(&result)
+	db.Raw("EXEC usp_dbGetMCIbyColaborador ?", colaboradorId).Scan(&result)
 
 	for _, dato := range result {
 
-		fmt.Println(dato.IdMCI)
 		var resultadosMCI []models.ResultadoMCI
 
 		var tablero models.Tablero
 
 		tablero.IdMCI = dato.IdMCI
 		tablero.MCI = dato.MCI
+		tablero.Orden = dato.Orden
 
 		type Frecuencia struct {
 			FrecuenciaId int `gorm:"column:idFrecuencia"`
@@ -54,7 +53,7 @@ func TableroColaborador(colaboradorId string, mesId string) ([]models.Tablero, e
 
 		var medidasPredictiva []models.MedidaPredictiva
 
-		db.Raw("SElect idMP,MedidaPredictiva,CriterioVerde,CriterioAmarillo,CriterioRojo FROM LVMedidasPredictivas where idMCI = ?", dato.IdMCI).Scan(&medidasPredictiva)
+		db.Raw("Select idMP,MedidaPredictiva,CriterioVerde,CriterioAmarillo,CriterioRojo FROM LVMedidasPredictivas where idMCI = ?", dato.IdMCI).Scan(&medidasPredictiva)
 
 		for _, medida := range medidasPredictiva {
 

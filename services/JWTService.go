@@ -17,7 +17,7 @@ type Claims struct {
 	jwt.StandardClaims
 }
 
-var jwtKey = []byte("my_secret_key")
+var jwtKey = []byte("Un4M4s@cr33sL4M3j0r0pc!0n")
 
 func Create_JWT(usuario models.Usuario) (string, error) {
 
@@ -56,7 +56,7 @@ func IsLogginMiddleWare(next http.Handler) http.Handler {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-CSRF-Token, Authorization, X-Requested-With, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, Screen")
 
-		notAuth := []string{"/login"}
+		notAuth := []string{"/login", "/loginWithToken"}
 		requestPath := r.URL.Path
 
 		for _, value := range notAuth {

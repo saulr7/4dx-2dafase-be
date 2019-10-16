@@ -43,7 +43,6 @@ func GetMedidasPredictivas(w http.ResponseWriter, r *http.Request) {
 }
 
 func enableCors(w *http.ResponseWriter) {
-	fmt.Println("enale")
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }
 

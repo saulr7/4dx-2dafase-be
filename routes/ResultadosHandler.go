@@ -48,7 +48,6 @@ func ResultadosUpdate(w http.ResponseWriter, r *http.Request) {
 	var updatedResultados models.Resultados
 
 	err := json.NewDecoder(r.Body).Decode(&updatedResultados)
-	fmt.Println(updatedResultados)
 
 	if err != nil {
 		fmt.Println(err)
@@ -58,6 +57,39 @@ func ResultadosUpdate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var Resultado, err2 = services.ResultadosUpdate(updatedResultados)
+
+	if err2 != nil {
+		fmt.Println(err)
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, "No se ha podido obtener la data")
+		return
+	}
+
+	response, _ := json.Marshal(Resultado)
+
+	responseString := string(response)
+
+	fmt.Fprint(w, responseString)
+}
+
+func AutorizarResultadoHandler(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-type", "Application/json")
+
+	var resultado models.Resultados
+
+	err := json.NewDecoder(r.Body).Decode(&resultado)
+
+	if err != nil {
+		fmt.Println(err)
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, "Datos incorrectos")
+		return
+	}
+
+	var Resultado, err2 = services.AutorizarResultado(resultado)
 
 	if err2 != nil {
 		fmt.Println(err)
