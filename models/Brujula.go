@@ -5,5 +5,5 @@ type Brujula struct {
 	IdMP 			int  `gorm:"column:idMP"`	
 	IdColaborador 	int  `gorm:"column:idColaborador"`	
 	Actividad 		string  `gorm:"column:Actividad"`	
-	Estado 			string  `gorm:"column:Estado"`	
+	Estado 			string  `gorm:"column:idEstado"`	
 }
