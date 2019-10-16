@@ -1,8 +1,6 @@
 package services
 
 import (
-	"fmt"
-
 	"../config"
 	"../models"
 )
@@ -10,8 +8,6 @@ import (
 func ColaboradoresPorArea(AreaId string) ([]models.Colaborador, error) {
 
 	var colaborador []models.Colaborador
-
-	fmt.Println(AreaId)
 
 	db := config.ConnectDB()
 	defer db.Close()

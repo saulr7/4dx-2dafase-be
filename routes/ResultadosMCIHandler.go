@@ -17,10 +17,6 @@ func GetResultadosMCI(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Headers", "*")
 	w.Header().Set("Content-type", "Application/json")
 
-	fmt.Println("ResultadosMCIHandler")
-
-	fmt.Println(r)
-
 	vars := mux.Vars(r)
 	idMCI := vars["idMCI"]
 
@@ -108,10 +104,6 @@ func GetPeriodicidadMCI(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Headers", "*")
 	w.Header().Set("Content-type", "Application/json")
 
-	fmt.Println("PeriodicidadMCIHandler")
-
-	fmt.Println(r)
-
 	var Resultados, erro = services.GetPeriodicidadMCI()
 
 	if erro != nil {
@@ -135,13 +127,10 @@ func ResultadosMCICreate(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Access-Control-Allow-Headers", "*")
 	w.Header().Set("Content-type", "Application/json")
 
-	fmt.Println("ResultadosMCICreate")
-
 	fmt.Println(r)
 
 	vars := mux.Vars(r)
 	idMCI := vars["idMCI"]
-	fmt.Println(idMCI)
 
 	var Resultados, erro = services.ResultadosMCICreate(idMCI)
 

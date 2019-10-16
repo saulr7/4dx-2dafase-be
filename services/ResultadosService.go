@@ -35,3 +35,20 @@ func ResultadosUpdate(Modelo models.Resultados) (models.Resultados, error) {
 	return updatedResultado, nil
 
 }
+
+func AutorizarResultado(Modelo models.Resultados) (models.Resultados, error) {
+
+	var updatedResultado models.Resultados
+	if Modelo.Autorizado == true {
+
+	}
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Where("idResultado = ?", Modelo.IdResultado).Find(&updatedResultado)
+
+	db.Model(&updatedResultado).Where("idResultado= ?", Modelo.IdResultado).Update(map[string]interface{}{"Autorizado": true, "FechaModificacion": time.Now()})
+
+	return updatedResultado, nil
+
+}

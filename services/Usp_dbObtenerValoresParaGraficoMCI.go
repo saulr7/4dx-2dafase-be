@@ -1,8 +1,6 @@
 package services
 
 import (
-	
-	"fmt"
 	"../config"
 	"../models"
 )
@@ -13,9 +11,8 @@ func GetGraficaMCI(TipoGrafico string, IdMCI string, Anio string) ([]models.Graf
 
 	db := config.ConnectDB()
 	defer db.Close()
-	fmt.Println("Entra GraficaMCI Servicio")
-	
-	db.Raw("EXEC dbo.usp_dbObtenerValoresParaGraficoMCI ?, ?, ?", TipoGrafico, IdMCI, Anio ).Scan(&result)
 
-   return result, nil
+	db.Raw("EXEC dbo.usp_dbObtenerValoresParaGraficoMCI ?, ?, ?", TipoGrafico, IdMCI, Anio).Scan(&result)
+
+	return result, nil
 }

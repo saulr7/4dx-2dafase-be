@@ -1,8 +1,6 @@
 package services
 
 import (
-	"fmt"
-
 	"../config"
 	"../models"
 
@@ -29,11 +27,10 @@ func ValorMCIAdd(Modelo models.ResultadosMCI) (models.ResultadosMCI, error) {
 	db := config.ConnectDB()
 	defer db.Close()
 
-	fmt.Println("Llego")
-
 	db.Where("idResultadoMCI = ?", Modelo.IdResultadoMCI).Find(&updatedResultado)
 
-	db.Model(&updatedResultado).Where("idResultadoMCI= ?", Modelo.IdResultadoMCI).Update(models.ResultadosMCI{Valor: Modelo.Valor, FechaModificacion: time.Now()})
+	db.Model(&updatedResultado).Where("idResultadoMCI= ?", Modelo.IdResultadoMCI).Update(map[string]interface{}{"Valor": Modelo.Valor, "FechaModificacion": time.Now()})
+	// db.Model(&updatedResultado).Where("idResultadoMCI= ?", Modelo.IdResultadoMCI).Update(models.ResultadosMCI{Valor: Modelo.Valor, FechaModificacion: time.Now()})
 
 	return updatedResultado, nil
 }
