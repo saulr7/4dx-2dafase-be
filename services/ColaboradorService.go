@@ -20,3 +20,15 @@ func ColaboradoresPorArea(AreaId string) ([]models.Colaborador, error) {
 
 	return colaborador, nil
 }
+
+func GetColaboradoresSubArea(IdSubArea string) ([]models.Colaborador, error) {
+
+	var result []models.Colaborador
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("EXEC dbo.usp_dbgetColaboradoresByEquipo ?", IdSubArea).Scan(&result)
+
+	return result, nil
+}

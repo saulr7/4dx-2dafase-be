@@ -27,4 +27,5 @@ type GraficoGlobal struct{
 	ResultadoMCI float32 `gorm:"column:ResultadoMCI"`
 	MetaMP float32 `gorm:"column:MetaMP"`
 	ResultadoMP float32 `gorm:"column:ResultadoMP"`
+	MideMeta bool `gorm:"column:MideMeta"`
 }
