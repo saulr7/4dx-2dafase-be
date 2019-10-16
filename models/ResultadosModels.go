@@ -10,6 +10,7 @@ type Resultados struct {
 	MedidaPredictiva  string    `gorm:"column:MedidaPredictiva"`
 	IdFrecuencia      int       `gorm:"column:idFrecuencia"`
 	IdMedicion        int       `gorm:"column:idMedicion"`
+	IdColaborador     int       `gorm:"column:idColaborador"`
 	Anio              int       `gorm:"column:Anio"`
 	Mes               int       `gorm:"column:Mes"`
 	Semana            int       `gorm:"column:Semana"`
