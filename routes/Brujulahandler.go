@@ -123,3 +123,34 @@ func BrujulaEstadosGet(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprint(w, responseString)
 }
+
+func BrujulaActividadesPorMP(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-type", "Application/json")
+
+	vars := mux.Vars(r)
+	idMP := vars["idMP"]
+	mes := vars["mes"]
+
+	if idMP == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, "Información incorrectas")
+		return
+	}
+
+	var Brujulas, err2 = services.BrujulaActividadesPorMP(idMP, mes)
+
+	if err2 != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, "No se ha podido obtener la data")
+		return
+	}
+
+	response, _ := json.Marshal(Brujulas)
+
+	responseString := string(response)
+
+	fmt.Fprint(w, responseString)
+}

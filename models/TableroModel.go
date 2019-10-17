@@ -5,6 +5,7 @@ type Tablero struct {
 	MCI              string `gorm:"column:MCI"`
 	Periodicidad     int    `gorm:"column:idFrecuencia"`
 	Orden            int    `gorm:"column:orden"`
+	Unidad           string
 	ResultadosMCI    []ResultadoMCI
 	MedidaPredictiva []MedidaPredictiva
 }

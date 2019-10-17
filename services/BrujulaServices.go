@@ -59,3 +59,15 @@ func BrujulaEstadoGet() ([]models.BrujulaEstado, error) {
 
 	return BrujulaEstados, nil
 }
+
+func BrujulaActividadesPorMP(idMP string, mes string) ([]models.BrujulaConEstado, error) {
+
+	var BrujulaActividades []models.BrujulaConEstado
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("SELECT * FROM dbBrujulaPorMP b INNER JOIN dbEstadosBrujula e on e.idEstado= b.IdEstado WHERE IdResultadoMP IN (SELECT idResultado FROM dbResultados WHERE idMP = ? AND MES = ?) ORDER BY FechaCreada DESC", idMP, mes).Scan(&BrujulaActividades)
+
+	return BrujulaActividades, nil
+}

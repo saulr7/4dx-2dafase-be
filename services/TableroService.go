@@ -75,6 +75,7 @@ func TableroColaborador(colaboradorId string, mesId string) ([]models.Tablero, e
 			for _, resulMP := range resultasdoMP {
 
 				medida.ResultadosMP = append(medida.ResultadosMP, resulMP)
+				tablero.Unidad = resulMP.Unidad
 			}
 
 			tablero.MedidaPredictiva = append(tablero.MedidaPredictiva, medida)

@@ -38,6 +38,7 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/BrujulaPorMPUpdate", BrujulaPorMPUpdate).Methods("POST")
 	myRouter.HandleFunc("/BrujulasPorMP/{codigoEmpleado}/{idResultado}", BrujulasPorMPGet).Methods("GET")
 	myRouter.HandleFunc("/BrujulaEstados", BrujulaEstadosGet).Methods("GET")
+	myRouter.HandleFunc("/BrujulaActividadesPorMP/{idMP}/{mes}", BrujulaActividadesPorMP).Methods("GET")
 
 	return myRouter
 }
