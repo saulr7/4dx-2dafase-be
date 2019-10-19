@@ -22,7 +22,7 @@ func BrujulaPorMPCreate(Modelo models.Brujula) (models.Brujula, error) {
 	return Modelo, nil
 }
 
-func BrujulasPorMPGet(codigoEmpleado string, idResultado string) ([]models.BrujulaConEstado, error) {
+func BrujulasPorMPGet(codigoEmpleado string) ([]models.BrujulaConEstado, error) {
 
 	var brujulas []models.BrujulaConEstado
 

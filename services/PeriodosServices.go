@@ -1,6 +1,8 @@
 package services
 
 import (
+	"time"
+
 	"../config"
 	"../models"
 )
@@ -19,11 +21,12 @@ func DbPeriodoPorMPUPdate(Estructura models.DbPeriodoPorMP) (models.DbPeriodoPor
 	return updatedPeriodo, nil
 }
 
-
 func DbPeriodoPorMPAdd(Modelo models.DbPeriodoPorMP) (models.DbPeriodoPorMP, error) {
 
+	t := time.Now()
 	Modelo.IdPeriodo = 0
-	Modelo.Anio = time.Year()
+	Modelo.Anio = t.Year()
+	Modelo.FechaCreacion = time.Now()
 
 	db := config.ConnectDB()
 	defer db.Close()
