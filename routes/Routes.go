@@ -8,6 +8,7 @@ func Routes() *mux.Router {
 
 	myRouter := mux.NewRouter()
 
+	
 	myRouter.HandleFunc("/login", LoginHandler)
 	myRouter.HandleFunc("/loginWithToken", LoginWithToken)
 	myRouter.HandleFunc("/GetMedidasPredictivas/{codigoEmpleado}", GetMedidasPredictivas).Methods("GET")

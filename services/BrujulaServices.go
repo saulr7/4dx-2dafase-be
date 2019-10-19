@@ -28,7 +28,7 @@ func BrujulasPorMPGet(codigoEmpleado string, idResultado string) ([]models.Bruju
 	db := config.ConnectDB()
 	defer db.Close()
 
-	db.Raw("SELECT * FROM dbBrujulaPorMP b INNER JOIN dbEstadosBrujula e ON e.idEstado = b.idEstado where b.idColaborador = ? and b.IdResultadoMP = ? order by b.fechaCreada desc", codigoEmpleado, idResultado).Scan(&brujulas)
+	db.Raw("SELECT * FROM dbBrujulaPorColaborador b INNER JOIN dbEstadosBrujula e ON e.idEstado = b.idEstado where b.idColaborador = ? order by b.fechaCreada desc", codigoEmpleado).Scan(&brujulas)
 
 	return brujulas, nil
 }
@@ -67,7 +67,7 @@ func BrujulaActividadesPorMP(idMP string, mes string) ([]models.BrujulaConEstado
 	db := config.ConnectDB()
 	defer db.Close()
 
-	db.Raw("SELECT * FROM dbBrujulaPorMP b INNER JOIN dbEstadosBrujula e on e.idEstado= b.IdEstado WHERE IdResultadoMP IN (SELECT idResultado FROM dbResultados WHERE idMP = ? AND MES = ?) ORDER BY FechaCreada DESC", idMP, mes).Scan(&BrujulaActividades)
+	db.Raw("SELECT * FROM dbBrujulaPorColaborador b INNER JOIN dbEstadosBrujula e on e.idEstado= b.IdEstado  ORDER BY FechaCreada DESC", idMP, mes).Scan(&BrujulaActividades)
 
 	return BrujulaActividades, nil
 }

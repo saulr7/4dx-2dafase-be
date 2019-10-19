@@ -10,6 +10,7 @@ type DbPeriodoPorMP struct {
 	IdMP         int `gorm:"column:idMP"`
 	IdFrecuencia int `gorm:"column:idFrecuencia"`
 	IdMedicion   int `gorm:"column:idMedicion"`
+	Anio 		 int `gorm:"column:Anio"`
 }
 
 func (DbPeriodoPorMP) TableName() string {
@@ -19,8 +20,9 @@ func (DbPeriodoPorMP) TableName() string {
 type PeriodoPorMCI struct {
 	// gorm.Model
 	IdPeriodo    int `gorm:"AUTO_INCREMENT;column:idPeriodo"`
-	IdMCI         int `gorm:"column:idMCI"`
+	IdMCI        int `gorm:"column:idMCI"`
 	IdFrecuencia int `gorm:"column:idFrecuencia"`		
+	Anio 		 int `gorm:"column:Anio"`	
 }
 
 func (PeriodoPorMCI) TableName() string {
