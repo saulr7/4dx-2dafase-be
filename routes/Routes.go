@@ -8,7 +8,6 @@ func Routes() *mux.Router {
 
 	myRouter := mux.NewRouter()
 
-	
 	myRouter.HandleFunc("/login", LoginHandler)
 	myRouter.HandleFunc("/loginWithToken", LoginWithToken)
 	myRouter.HandleFunc("/GetMedidasPredictivas/{codigoEmpleado}", GetMedidasPredictivas).Methods("GET")
@@ -40,6 +39,7 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/BrujulasPorMP/{codigoEmpleado}/{idResultado}", BrujulasPorMPGet).Methods("GET")
 	myRouter.HandleFunc("/BrujulaEstados", BrujulaEstadosGet).Methods("GET")
 	myRouter.HandleFunc("/BrujulaActividadesPorMP/{idMP}/{mes}", BrujulaActividadesPorMP).Methods("GET")
-
+	myRouter.HandleFunc("/ReunionMCINew", ReunionMCICreate).Methods("POST")
+	myRouter.HandleFunc("/DetalleReunionMCINew/{IdReunion}/{IdColaborador}/{HoraInicio}/{Horafin}", DetalleReunionMCICreate).Methods("POST")
 	return myRouter
 }
