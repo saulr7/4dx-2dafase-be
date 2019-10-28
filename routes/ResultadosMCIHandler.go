@@ -178,3 +178,34 @@ func MetaMCIAdd(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprint(w, responseString)
 }
+
+func ResultadoMCIAutorizar(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-type", "Application/json")
+
+	vars := mux.Vars(r)
+	idResultado := vars["idResultado"]
+
+	if idResultado == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, "Datos incorrectos")
+		return
+	}
+
+	var Resultado, err2 = services.AutorizarResultadoMCI(idResultado)
+
+	if err2 != nil {
+		fmt.Println(err2)
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, "No se ha podido obtener la data")
+		return
+	}
+
+	response, _ := json.Marshal(Resultado)
+
+	responseString := string(response)
+
+	fmt.Fprint(w, responseString)
+}

@@ -3,6 +3,7 @@ package services
 import (
 	"encoding/json"
 	"errors"
+	"strconv"
 
 	"../config"
 	"../models"
@@ -20,6 +21,11 @@ func Login(credenciales models.UsuarioCredenciales) (string, error) {
 	if result.Empleado == 0 {
 		return "", errors.New("Credenciales incorrectas")
 	}
+
+	var eventosistema models.EventoDelSistema
+	eventosistema.Evento = "Inicio de sesión"
+	eventosistema.IdColaborador, _ = strconv.Atoi(credenciales.CodigoEmpleado)
+	RegistarEventoDelSistema(eventosistema)
 
 	json.Marshal(&result)
 
@@ -41,6 +47,11 @@ func LoginWithToken(credenciales models.UsuarioCredenciales) (string, error) {
 	if result.Empleado == 0 {
 		return "", errors.New("Credenciales incorrectas")
 	}
+
+	var eventosistema models.EventoDelSistema
+	eventosistema.Evento = "Inicio de sesión"
+	eventosistema.IdColaborador, _ = strconv.Atoi(credenciales.CodigoEmpleado)
+	RegistarEventoDelSistema(eventosistema)
 
 	json.Marshal(&result)
 

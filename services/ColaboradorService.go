@@ -32,3 +32,15 @@ func GetColaboradoresSubArea(IdSubArea string) ([]models.Colaborador, error) {
 
 	return result, nil
 }
+
+func ColaboradoresAdmins() ([]models.Colaborador, error) {
+
+	var colaboradores []models.Colaborador
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("SELECT NombreColaborador, idColaborador, Correo FROM Colaboradores where idPerfil = ?", 2).Scan(&colaboradores)
+
+	return colaboradores, nil
+}

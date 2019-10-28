@@ -16,6 +16,7 @@ type ResultadosMCI struct {
 	FechaModificacion time.Time `gorm:"column:FechaModificacion"`
 	Meta              float32   `gorm:"column:Meta"`
 	IdPeriocidad      int       `gorm:"column:idFrecuencia"`
+	IdColaborador     int       `gorm:"column:idColaborador"`
 }
 
 func (ResultadosMCI) TableName() string {

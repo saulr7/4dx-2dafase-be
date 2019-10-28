@@ -8,7 +8,6 @@ func Routes() *mux.Router {
 
 	myRouter := mux.NewRouter()
 
-	
 	myRouter.HandleFunc("/login", LoginHandler)
 	myRouter.HandleFunc("/loginWithToken", LoginWithToken)
 	myRouter.HandleFunc("/GetMedidasPredictivas/{codigoEmpleado}", GetMedidasPredictivas).Methods("GET")
@@ -19,6 +18,7 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/PeriodosPorMPNew", DBPeriodosPorMPInsert).Methods("POST")
 	myRouter.HandleFunc("/PeriodosPorMPUpdate", DBPeriodosPorMPUpdateHandler).Methods("POST")
 	myRouter.HandleFunc("/ResultadosUpdate", ResultadosUpdate).Methods("POST")
+	myRouter.HandleFunc("/ResultadoMCIAutorizar/{idResultado}", ResultadoMCIAutorizar).Methods("GET")
 	myRouter.HandleFunc("/ValorMCIAdd", ValorMCIAdd).Methods("POST")
 	myRouter.HandleFunc("/MetaMCIAdd", MetaMCIAdd).Methods("POST")
 	myRouter.HandleFunc("/TipoGraficos", TipoGraficosHandler).Methods("GET")
@@ -35,11 +35,16 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/AutorizarResultado", AutorizarResultadoHandler).Methods("POST")
 	myRouter.HandleFunc("/GetMCIColaborador/{codigoEmpleado}", GetMCI).Methods("GET")
 	myRouter.HandleFunc("/GetColaboradoresSubArea/{idSubArea}", GetColaboradoresSubArea).Methods("GET")
+	myRouter.HandleFunc("/GetColaboradoresAdmins", GetColaboradoresAdmins).Methods("GET")
 	myRouter.HandleFunc("/BrujulaPorMPAdd", BrujulaPorMPCreate).Methods("POST")
 	myRouter.HandleFunc("/BrujulaPorMPUpdate", BrujulaPorMPUpdate).Methods("POST")
 	myRouter.HandleFunc("/BrujulasPorMP/{codigoEmpleado}/{idResultado}", BrujulasPorMPGet).Methods("GET")
 	myRouter.HandleFunc("/BrujulaEstados", BrujulaEstadosGet).Methods("GET")
 	myRouter.HandleFunc("/BrujulaActividadesPorMP/{idMP}/{mes}", BrujulaActividadesPorMP).Methods("GET")
+	myRouter.HandleFunc("/BrujulaActividadesPorColaborador/{codigoEmpleado}", BrujulaActividadesPorColaborador).Methods("GET")
+	myRouter.HandleFunc("/BrujulaActividadesPorColaborador/{codigoEmpleado}/{idEstado}", BrujulaActividadesPorColaborador).Methods("GET")
+	myRouter.HandleFunc("/RegistrarEventoDelSistema", RegistrarEventoDelSistema).Methods("POST")
+	myRouter.HandleFunc("/SendEmail", SendEmailHandler).Methods("POST")
 
 	return myRouter
 }

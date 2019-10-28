@@ -72,3 +72,21 @@ func BrujulaActividadesPorMP(idMP string, mes string) ([]models.BrujulaConEstado
 
 	return BrujulaActividades, nil
 }
+
+func BrujulaActividadesPorColaborador(idEmpleado string, idEstado string) ([]models.BrujulaConEstado, error) {
+
+	var BrujulaActividades []models.BrujulaConEstado
+
+	filtroPorEstado := ""
+
+	if idEstado != "NO" {
+		filtroPorEstado = "AND b.idEstado = " + idEstado
+	}
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("SELECT * FROM dbBrujulaPorColaborador b inner join dbEstadosBrujula e on b.IdEstado = e.idEstado where IdColaborador = ? "+filtroPorEstado+" order by FechaCreada desc", idEmpleado).Scan(&BrujulaActividades)
+
+	return BrujulaActividades, nil
+}

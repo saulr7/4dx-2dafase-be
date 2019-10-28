@@ -44,7 +44,7 @@ func TableroColaborador(colaboradorId string, mesId string) ([]models.Tablero, e
 
 		tablero.Periodicidad = frecuencia.FrecuenciaId
 
-		db.Raw("SELECT Mes, Valor, Meta FROM dbResultadosMCI where idMCI = ?", dato.IdMCI).Scan(&resultadosMCI)
+		db.Raw("SELECT Mes, Valor, Meta, Unidad FROM dbResultadosMCI where idMCI = ?", dato.IdMCI).Scan(&resultadosMCI)
 
 		for _, resultado := range resultadosMCI {
 
