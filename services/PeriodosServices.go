@@ -23,9 +23,11 @@ func DbPeriodoPorMPUPdate(Estructura models.DbPeriodoPorMP) (models.DbPeriodoPor
 
 func DbPeriodoPorMPAdd(Modelo models.DbPeriodoPorMP) (models.DbPeriodoPorMP, error) {
 
-	Modelo.IdPeriodo = 0
 	t := time.Now()
+	Modelo.IdPeriodo = 0
+
 	Modelo.Anio = t.Year()
+	Modelo.FechaCreacion = time.Now()
 
 	db := config.ConnectDB()
 	defer db.Close()

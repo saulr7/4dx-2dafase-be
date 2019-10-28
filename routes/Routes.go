@@ -45,6 +45,8 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/BrujulaActividadesPorColaborador/{codigoEmpleado}/{idEstado}", BrujulaActividadesPorColaborador).Methods("GET")
 	myRouter.HandleFunc("/RegistrarEventoDelSistema", RegistrarEventoDelSistema).Methods("POST")
 	myRouter.HandleFunc("/SendEmail", SendEmailHandler).Methods("POST")
+	myRouter.HandleFunc("/ReunionMCINew", ReunionMCICreate).Methods("POST")
+	myRouter.HandleFunc("/DetalleReunionMCINew/{IdReunion}/{IdColaborador}/{HoraInicio}/{Horafin}", DetalleReunionMCICreate).Methods("POST")
 
 	return myRouter
 }

@@ -49,7 +49,6 @@ func BrujulasPorMPGet(w http.ResponseWriter, r *http.Request) {
 
 	vars := mux.Vars(r)
 	codigoEmpleado := vars["codigoEmpleado"]
-	idResultado := vars["idResultado"]
 
 	if codigoEmpleado == "" {
 		w.WriteHeader(http.StatusBadRequest)
@@ -57,7 +56,7 @@ func BrujulasPorMPGet(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var Brujulas, err2 = services.BrujulasPorMPGet(codigoEmpleado, idResultado)
+	var Brujulas, err2 = services.BrujulasPorMPGet(codigoEmpleado)
 
 	if err2 != nil {
 		w.WriteHeader(http.StatusBadRequest)
