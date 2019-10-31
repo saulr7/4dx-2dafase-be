@@ -44,3 +44,15 @@ func ColaboradoresAdmins() ([]models.Colaborador, error) {
 
 	return colaboradores, nil
 }
+
+func ColaboradorPorCodigo(empleadoCodigo string) (models.Colaborador, error) {
+
+	var colaboradores models.Colaborador
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("SELECT NombreColaborador, idColaborador, Correo FROM Colaboradores where idColaborador = ?", empleadoCodigo).Scan(&colaboradores)
+
+	return colaboradores, nil
+}

@@ -1,7 +1,6 @@
 package server
 
 import (
-	"fmt"
 	"net/http"
 
 	"../routes"
@@ -30,7 +29,6 @@ func CORS(h http.Handler) http.Handler {
 		w.Header().Set("Access-Control-Allow-Headers", "*")
 
 		if r.Method == "OPTIONS" {
-			fmt.Println("If")
 			w.Header().Set("Access-Control-Allow-Credentials", "true")
 			w.Header().Set("Access-Control-Allow-Methods", "GET,POST, OPTIONS")
 			w.Header().Set("Content-Type", "text/html; charset=utf-8")

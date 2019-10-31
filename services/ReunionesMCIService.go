@@ -1,6 +1,7 @@
 package services
 
 import (
+	"fmt"
 	"time"
 
 	"../config"
@@ -11,6 +12,7 @@ func ReunionMCIreate(Modelo models.ReunionesMCI) (models.ReunionesMCI, error) {
 
 	Modelo.IdReunion = 0
 	Modelo.FechaInicio = time.Now()
+	Modelo.UltimaActualizacion = time.Now()
 
 	db := config.ConnectDB()
 	defer db.Close()
@@ -20,14 +22,44 @@ func ReunionMCIreate(Modelo models.ReunionesMCI) (models.ReunionesMCI, error) {
 	return Modelo, nil
 }
 
-func SetDetalleReunionMCI(IdReunion string, IdColaborador string, HoraInicio string, horaFin string) ([]models.DetalleReunionesMCI, error) {
+func SetDetalleReunionMCI(Modelo models.DetalleReunionesMCI) (models.DetalleReunionesMCI, error) {
 
-	var result []models.DetalleReunionesMCI
+	Modelo.IdDetalleReunion = 0
+	Modelo.Fecha = time.Now()
 
 	db := config.ConnectDB()
 	defer db.Close()
 
-	db.Raw("EXEC dbo.usp_dbSetDetalleReuniones ?, ?, ?, ?", IdReunion, IdColaborador, HoraInicio, horaFin).Scan(&result)
+	db.Create(&Modelo)
+
+	return Modelo, nil
+}
+
+func GetReunionDelDia(empleadoId string) (models.ReunionesMCI, error) {
+
+	var result models.ReunionesMCI
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("SELECT top 1 * FROM dbReunionesMCI where idLider = ? and cast(FechaInicio as date) = cast(GETDATE() as date) order by 1 desc ", empleadoId).Scan(&result)
+
+	fmt.Println(result)
 
 	return result, nil
+}
+
+func UpdateTiempoReunion(Model models.ReunionesMCI) (models.ReunionesMCI, error) {
+
+	var updateReunion models.ReunionesMCI
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Where("idReunion = ?", Model.IdReunion).Find(&updateReunion)
+
+	db.Model(&updateReunion).Where("idReunion= ?", Model.IdReunion).Update(map[string]interface{}{"UltimaActualizacion": time.Now(), "tiempoSegundos": Model.TiempoSegundos})
+
+	return updateReunion, nil
+
 }

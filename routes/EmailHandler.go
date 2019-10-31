@@ -19,19 +19,6 @@ func SendEmailHandler(w http.ResponseWriter, r *http.Request) {
 	var emailModel models.Email
 
 	err := json.NewDecoder(r.Body).Decode(&emailModel)
-	emailModel.ProfileName = "4DX"
-
-	colaboradores, _ := services.ColaboradoresAdmins()
-
-	var remitentes = ""
-
-	for _, colaborador := range colaboradores {
-		remitentes = remitentes + colaborador.Correo + ";"
-	}
-
-	emailModel.Recipients = "saulr@banpais.hn"
-	emailModel.Subject = emailModel.Subject + " " + remitentes
-	// emailModel.Recipients = remitentes
 
 	if err != nil {
 		fmt.Println(err)
@@ -40,7 +27,7 @@ func SendEmailHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var sended, err2 = services.SendEmail(emailModel)
+	var sended, err2 = services.SendEmailForAutorization(emailModel)
 
 	if err2 != nil {
 		fmt.Println(err)
