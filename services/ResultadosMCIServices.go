@@ -51,13 +51,12 @@ func MetaMCIAdd(Modelo models.ResultadosMCI) (models.ResultadosMCI, error) {
 
 	var updatedResultado models.ResultadosMCI
 
-	//  if Modelo.Autorizado == true{
 	db := config.ConnectDB()
 	defer db.Close()
 
 	db.Where("idResultadoMCI = ?", Modelo.IdResultadoMCI).Find(&updatedResultado)
 
-	db.Model(&updatedResultado).Where("idResultadoMCI= ?", Modelo.IdResultadoMCI).Update(models.ResultadosMCI{Meta: Modelo.Meta, FechaModificacion: time.Now()})
+	db.Model(&updatedResultado).Where("idResultadoMCI= ?", Modelo.IdResultadoMCI).Update(map[string]interface{}{"Meta": Modelo.Meta, "FechaModificacion": time.Now()})
 
 	return updatedResultado, nil
 }
