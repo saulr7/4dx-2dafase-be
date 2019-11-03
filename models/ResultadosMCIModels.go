@@ -17,6 +17,7 @@ type ResultadosMCI struct {
 	Meta              float32   `gorm:"column:Meta"`
 	IdPeriocidad      int       `gorm:"column:idFrecuencia"`
 	IdColaborador     int       `gorm:"column:idColaborador"`
+	Descripcion       string    `gorm:"column:Descripcion"`
 }
 
 func (ResultadosMCI) TableName() string {
