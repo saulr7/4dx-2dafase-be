@@ -81,7 +81,7 @@ func GetMetasColaborador(colaboradorId string) ([]models.Tablero, error) {
 		tablero.Autorizado = estaAutorizado.Autorizado
 		fmt.Println("aUROR", estaAutorizado.Autorizado)
 
-		db.Raw("Select idMP,MedidaPredictiva FROM LVMedidasPredictivas where idMCI = ?", dato.IdMCI).Scan(&medidasPredictiva)
+		db.Raw("Select idMP,MedidaPredictiva,ROW_NUMBER()OVER(ORDER BY idMP)OrdenMP FROM LVMedidasPredictivas where idMCI = ?", dato.IdMCI).Scan(&medidasPredictiva)
 
 		for _, medida := range medidasPredictiva {
 

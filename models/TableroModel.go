@@ -15,17 +15,19 @@ type ResultadoMCI struct {
 	Meta         float32 `gorm:"column:Meta"`
 	ResultadoMCI float32 `gorm:"column:Valor"`
 	Mes          int     `gorm:"column:Mes"`
+	Unidad       string  `gorm:"column:Unidad"`
 }
 
 type MedidaPredictiva struct {
-	IdMP             int     `gorm:"column:idMP"`
-	MedidaPredictiva string  `gorm:"column:MedidaPredictiva"`
-	MetaMP           float32 `gorm:"column:ValorCampo"`
-	MedicionId       int     `gorm:"column:idMedicion"`
-	FrecuenciaId     int     `gorm:"column:idFrecuencia"`
-	CriterioVerde    string  `gorm:"column:CriterioVerde"`
-	CriterioAmarillo string  `gorm:"column:CriterioAmarillo"`
-	CriterioRojo     string  `gorm:"column:CriterioRojo"`
+	IdMP             int    `gorm:"column:idMP"`
+	MedidaPredictiva string `gorm:"column:MedidaPredictiva"`
+	OrdenMP          int    `gorm:"column:OrdenMP"`
+	MetaMP           string `gorm:"column:ValorCampo"`
+	MedicionId       int    `gorm:"column:idMedicion"`
+	FrecuenciaId     int    `gorm:"column:idFrecuencia"`
+	CriterioVerde    string `gorm:"column:CriterioVerde"`
+	CriterioAmarillo string `gorm:"column:CriterioAmarillo"`
+	CriterioRojo     string `gorm:"column:CriterioRojo"`
 	ResultadosMP     []ResultadoMP
 }
 

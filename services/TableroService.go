@@ -1,6 +1,8 @@
 package services
 
 import (
+	"fmt"
+
 	"../config"
 	"../models"
 )
@@ -47,13 +49,15 @@ func TableroColaborador(colaboradorId string, mesId string) ([]models.Tablero, e
 		db.Raw("SELECT Mes, Valor, Meta, Unidad FROM dbResultadosMCI where idMCI = ?", dato.IdMCI).Scan(&resultadosMCI)
 
 		for _, resultado := range resultadosMCI {
+			fmt.Println(resultado)
 
 			tablero.ResultadosMCI = append(tablero.ResultadosMCI, resultado)
+			tablero.Unidad = resultado.Unidad
 		}
 
 		var medidasPredictiva []models.MedidaPredictiva
 
-		db.Raw("Select idMP,MedidaPredictiva,CriterioVerde,CriterioAmarillo,CriterioRojo FROM LVMedidasPredictivas where idMCI = ?", dato.IdMCI).Scan(&medidasPredictiva)
+		db.Raw("Select idMP,MedidaPredictiva,CriterioVerde,CriterioAmarillo,CriterioRojo,ROW_NUMBER()OVER(ORDER BY idMP)OrdenMP FROM LVMedidasPredictivas where idMCI = ?", dato.IdMCI).Scan(&medidasPredictiva)
 
 		for _, medida := range medidasPredictiva {
 
@@ -75,7 +79,6 @@ func TableroColaborador(colaboradorId string, mesId string) ([]models.Tablero, e
 			for _, resulMP := range resultasdoMP {
 
 				medida.ResultadosMP = append(medida.ResultadosMP, resulMP)
-				tablero.Unidad = resulMP.Unidad
 			}
 
 			tablero.MedidaPredictiva = append(tablero.MedidaPredictiva, medida)

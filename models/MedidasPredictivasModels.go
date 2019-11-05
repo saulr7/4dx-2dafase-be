@@ -19,4 +19,5 @@ type GetMPbyMCI struct {
 	Medicion           string `gorm:"column:Medicion"`
 	Periodicidad       int    `gorm:"column:Periodicidad"`
 	Orden              int    `gorm:"column:Orden"`
+	OrdenMP              int    `gorm:"column:OrdenMP"`
 }
