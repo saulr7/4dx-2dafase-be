@@ -44,6 +44,7 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/BrujulaActividadesPorMP/{idMP}/{mes}", BrujulaActividadesPorMP).Methods("GET")
 	myRouter.HandleFunc("/BrujulaActividadesPorColaborador/{codigoEmpleado}", BrujulaActividadesPorColaborador).Methods("GET")
 	myRouter.HandleFunc("/BrujulaActividadesPorColaborador/{codigoEmpleado}/{idEstado}", BrujulaActividadesPorColaborador).Methods("GET")
+	myRouter.HandleFunc("/BrujulaActividadesPorColaborador/{codigoEmpleado}/{idEstado}/{esLider}", BrujulaActividadesPorColaborador).Methods("GET")
 	myRouter.HandleFunc("/RegistrarEventoDelSistema", RegistrarEventoDelSistema).Methods("POST")
 	myRouter.HandleFunc("/SendEmail", SendEmailHandler).Methods("POST")
 	myRouter.HandleFunc("/SendEmailConfirmedAutorization/{empleadoCodigo}", SendEmailHandler).Methods("POST")

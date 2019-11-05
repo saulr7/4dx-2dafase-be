@@ -73,7 +73,7 @@ func BrujulaActividadesPorMP(idMP string, mes string) ([]models.BrujulaConEstado
 	return BrujulaActividades, nil
 }
 
-func BrujulaActividadesPorColaborador(idEmpleado string, idEstado string) ([]models.BrujulaConEstado, error) {
+func BrujulaActividadesPorColaborador(idEmpleado string, idEstado string, esLider string) ([]models.BrujulaConEstado, error) {
 
 	var BrujulaActividades []models.BrujulaConEstado
 
@@ -81,6 +81,10 @@ func BrujulaActividadesPorColaborador(idEmpleado string, idEstado string) ([]mod
 
 	if idEstado != "NO" {
 		filtroPorEstado = "AND b.idEstado = " + idEstado
+	}
+
+	if esLider == "SI" {
+		filtroPorEstado = filtroPorEstado + " AND (ActividadComoLider is null or ActividadComoLider <> 1) "
 	}
 
 	db := config.ConnectDB()

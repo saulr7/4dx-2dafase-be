@@ -11,6 +11,8 @@ type Brujula struct {
 	FechaModificada time.Time `gorm:"column:FechaModificada"`
 	Desde           time.Time `gorm:"column:Desde"`
 	Hasta           time.Time `gorm:"column:Hasta"`
+	ActividadComoLider bool `gorm:"column:ActividadComoLider"`
+	CreatedBy int `gorm:"column:CreatedBy"`
 }
 
 func (Brujula) TableName() string {

@@ -163,6 +163,7 @@ func BrujulaActividadesPorColaborador(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	codigoEmpleado := vars["codigoEmpleado"]
 	idEstado := vars["idEstado"]
+	esLider := vars["esLider"]
 
 	fmt.Println(idEstado)
 
@@ -172,7 +173,7 @@ func BrujulaActividadesPorColaborador(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var Brujulas, err2 = services.BrujulaActividadesPorColaborador(codigoEmpleado, idEstado)
+	var Brujulas, err2 = services.BrujulaActividadesPorColaborador(codigoEmpleado, idEstado, esLider)
 
 	if err2 != nil {
 		w.WriteHeader(http.StatusBadRequest)
