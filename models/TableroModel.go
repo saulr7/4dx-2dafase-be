@@ -35,6 +35,7 @@ type ResultadoMP struct {
 	Meta       float32 `gorm:"column:Meta"`
 	Mes        int     `gorm:"column:Mes"`
 	Semana     int     `gorm:"column:Semana"`
+	Periodo    string  `gorm:"column:Periodo"`
 	Dia        int     `gorm:"column:Dia"`
 	Valor      float32 `gorm:"column:Valor"`
 	Unidad     string  `gorm:"column:Unidad"`

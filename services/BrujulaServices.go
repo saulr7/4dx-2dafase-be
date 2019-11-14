@@ -12,6 +12,8 @@ func BrujulaPorMPCreate(Modelo models.Brujula) (models.Brujula, error) {
 	Modelo.IdBrujula = 0
 	Modelo.FechaCreada = time.Now()
 	Modelo.FechaModificada = time.Now()
+	Modelo.Desde = time.Now()
+	Modelo.Hasta = time.Now()
 	Modelo.IdEstado = 1
 
 	db := config.ConnectDB()

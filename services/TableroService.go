@@ -66,7 +66,7 @@ func TableroColaborador(colaboradorId string, mesId string) ([]models.Tablero, e
 			var meta models.MedidaPredictiva
 			var metaMedicion models.MedidaPredictiva
 
-			db.Raw("SELECT Mes, Semana, Dia, Valor, Unidad, LlegoAMeta FROM dbResultados WHERE Mes = ? and idMP = ?", mesId, medida.IdMP).Scan(&resultasdoMP)
+			db.Raw("SELECT Mes, Semana ,FORMAT(ns.FechaInicioRendicion, 'dd/MM') + ' - ' +  FORMAT(ns.FechaFinRendicion, 'dd/MM') 'Periodo', d.Dia, Valor, Unidad, LlegoAMeta FROM dbResultados d inner join dbNoSemana ns on d.idNoSemana = ns.idNoSemana WHERE Mes = ? and idMP = ?", mesId, medida.IdMP).Scan(&resultasdoMP)
 
 			db.Table("LVMPCampos").Select("ValorCampo").Where(" CampoMP = 'ValorY' AND  idMP = ?", medida.IdMP).Scan(&meta)
 
