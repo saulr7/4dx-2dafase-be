@@ -10,6 +10,11 @@ type ReunionesMCI struct {
 	TiempoSegundos      int       `gorm:"column:tiempoSegundos"`
 }
 
+type ReunionesMCIHora struct {
+	ReunionesMCI
+	TiempoTotal string `gorm:"column:TiempoTotal"`
+}
+
 func (ReunionesMCI) TableName() string {
 	return "dbReunionesMCI"
 }

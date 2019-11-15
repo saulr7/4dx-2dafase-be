@@ -49,6 +49,20 @@ func GetReunionDelDia(empleadoId string) (models.ReunionesMCI, error) {
 	return result, nil
 }
 
+func GetReunionSemanal(empleadoId string) (models.ReunionesMCIHora, error) {
+
+	var result models.ReunionesMCIHora
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("SELECT [dbo].[ufn_dbGetTiempoReunion] (?) TiempoTotal", empleadoId).Scan(&result)
+
+	fmt.Println(result)
+
+	return result, nil
+}
+
 func UpdateTiempoReunion(Model models.ReunionesMCI) (models.ReunionesMCI, error) {
 
 	var updateReunion models.ReunionesMCI

@@ -103,6 +103,32 @@ func GetReunionDelDia(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, responseString)
 }
 
+func GetReunionSemanal(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Header().Set("Access-Control-Expose-Headers: Content-Length", "X-JSON")
+	w.Header().Set("Access-Control-Allow-Headers", "*")
+	w.Header().Set("Content-type", "Application/json")
+
+	vars := mux.Vars(r)
+	IdLider := vars["IdLider"]
+
+	var Resultados, erro = services.GetReunionSemanal(IdLider)
+
+	if erro != nil {
+		fmt.Println(erro)
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintln(w, erro)
+		return
+	}
+
+	response, _ := json.Marshal(&Resultados)
+
+	responseString := string(response)
+
+	fmt.Fprint(w, responseString)
+}
+
 func UpdateTiempoReunion(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")

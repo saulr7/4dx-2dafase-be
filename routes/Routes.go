@@ -51,6 +51,7 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/ReunionMCINew", ReunionMCICreate).Methods("POST")
 	myRouter.HandleFunc("/DetalleReunionMCINew", DetalleReunionMCICreate).Methods("POST")
 	myRouter.HandleFunc("/GetReunionDelDia/{IdLider}", GetReunionDelDia).Methods("GET")
+	myRouter.HandleFunc("/GetReunionSemanal/{IdLider}", GetReunionSemanal).Methods("GET")
 	myRouter.HandleFunc("/UpdateTiempoReunion", UpdateTiempoReunion).Methods("POST")
 
 	return myRouter
