@@ -74,9 +74,9 @@ func BrujulaEstadoGet() ([]models.BrujulaEstado, error) {
 	return BrujulaEstados, nil
 }
 
-func GetFBrujulaCantidad(idColaborador string) ([]models.BrujulaCantidad, error) {
+func GetFBrujulaCantidad(idColaborador string) (models.BrujulaCantidad, error) {
 
-	var result []models.BrujulaCantidad
+	var result models.BrujulaCantidad
 
 	db := config.ConnectDB()
 	defer db.Close()
