@@ -12,11 +12,7 @@ import (
 
 func BrujulaPorMPCreate(w http.ResponseWriter, r *http.Request) {
 
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
-	w.Header().Set("Content-type", "Application/json")
-
-	var newBrujula models.Brujula
+	var newBrujula models.BrujulaLista
 	err := json.NewDecoder(r.Body).Decode(&newBrujula)
 
 	if err != nil {

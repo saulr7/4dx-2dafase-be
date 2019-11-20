@@ -7,6 +7,6 @@ import (
 )
 
 func main() {
-	fmt.Println("Corriendo...")
 	server.Serve()
+	fmt.Println("Corriendo...")
 }

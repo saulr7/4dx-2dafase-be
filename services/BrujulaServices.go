@@ -1,25 +1,36 @@
 package services
 
 import (
+	"fmt"
 	"time"
 
 	"../config"
 	"../models"
 )
 
-func BrujulaPorMPCreate(Modelo models.Brujula) (models.Brujula, error) {
+func BrujulaPorMPCreate(Modelo models.BrujulaLista) (models.BrujulaLista, error) {
 
-	Modelo.IdBrujula = 0
-	Modelo.FechaCreada = time.Now()
-	Modelo.FechaModificada = time.Now()
-	Modelo.Desde = time.Now()
-	Modelo.Hasta = time.Now()
-	Modelo.IdEstado = 1
+	fmt.Println(Modelo.Actividades)
+
+	var brujulaModel models.Brujula
+	brujulaModel.IdBrujula = 0
+	brujulaModel.FechaCreada = time.Now()
+	brujulaModel.FechaModificada = time.Now()
+	brujulaModel.Desde = time.Now()
+	brujulaModel.Hasta = time.Now()
+	brujulaModel.IdEstado = 1
+	brujulaModel.IdColaborador = Modelo.IdColaborador
+	brujulaModel.CreatedBy = Modelo.CreatedBy
+	brujulaModel.ActividadComoLider = Modelo.ActividadComoLider
 
 	db := config.ConnectDB()
 	defer db.Close()
 
-	db.Create(&Modelo)
+	for _, brujula := range Modelo.Actividades {
+		brujulaModel.IdBrujula = 0
+		brujulaModel.Actividad = brujula
+		db.Create(&brujulaModel)
+	}
 
 	return Modelo, nil
 }

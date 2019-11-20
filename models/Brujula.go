@@ -15,6 +15,11 @@ type Brujula struct {
 	CreatedBy          int       `gorm:"column:CreatedBy"`
 }
 
+type BrujulaLista struct {
+	Brujula
+	Actividades []string
+}
+
 func (Brujula) TableName() string {
 	return "dbBrujulaPorColaborador"
 }
