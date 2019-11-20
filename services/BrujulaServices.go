@@ -74,6 +74,19 @@ func BrujulaEstadoGet() ([]models.BrujulaEstado, error) {
 	return BrujulaEstados, nil
 }
 
+func GetFBrujulaCantidad(idColaborador string) ([]models.BrujulaCantidad, error) {
+
+	var result []models.BrujulaCantidad
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("EXEC usp_dbGetActiviadesSiguienteBrujula ?", idColaborador).Scan(&result)
+
+	return result, nil
+
+}
+
 func BrujulaActividadesPorMP(idMP string, mes string) ([]models.BrujulaConEstado, error) {
 
 	var BrujulaActividades []models.BrujulaConEstado

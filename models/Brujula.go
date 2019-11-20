@@ -38,6 +38,11 @@ type BrujulaEstado struct {
 	Descripcion string `gorm:"column:Descripcion"`
 }
 
+type BrujulaCantidad struct {
+	IdColaborador int    `gorm:"column:idColaborador;"`
+	Cantidad      string `gorm:"column:Cantidad"`
+}
+
 func (BrujulaEstado) TableName() string {
 	return "dbEstadosBrujula"
 }

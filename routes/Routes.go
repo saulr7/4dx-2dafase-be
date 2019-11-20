@@ -53,6 +53,7 @@ func Routes() *mux.Router {
 	myRouter.HandleFunc("/GetReunionDelDia/{IdLider}", GetReunionDelDia).Methods("GET")
 	myRouter.HandleFunc("/GetReunionSemanal/{IdLider}", GetReunionSemanal).Methods("GET")
 	myRouter.HandleFunc("/UpdateTiempoReunion", UpdateTiempoReunion).Methods("POST")
+	myRouter.HandleFunc("/GetBrujulaCantidad/{idColaborador}", GetBrujulaCantidad).Methods("GET")
 
 	return myRouter
 }
