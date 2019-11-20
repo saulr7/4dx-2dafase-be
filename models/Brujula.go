@@ -39,8 +39,9 @@ type BrujulaEstado struct {
 }
 
 type BrujulaCantidad struct {
-	IdColaborador int    `gorm:"column:idColaborador;"`
-	Cantidad      string `gorm:"column:Cantidad"`
+	IdColaborador     int    `gorm:"column:idColaborador;"`
+	Cantidad          string `gorm:"column:Cantidad"`
+	CantidadComoLider string `gorm:"column:CantidadComoLider"`
 }
 
 func (BrujulaEstado) TableName() string {
