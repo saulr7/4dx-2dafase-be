@@ -30,7 +30,7 @@ func ResultadosUpdate(Modelo models.Resultados) (models.Resultados, error) {
 
 	db.Where("idResultado = ?", Modelo.IdResultado).Find(&updatedResultado)
 
-	db.Model(&updatedResultado).Where("idResultado= ?", Modelo.IdResultado).Update(map[string]interface{}{"Valor": Modelo.Valor, "FechaModificacion": time.Now(), "LlegoAMeta": Modelo.LlegoAMeta})
+	db.Model(&updatedResultado).Where("idResultado= ?", Modelo.IdResultado).Update(map[string]interface{}{"Valor": Modelo.Valor, " FechaModificacion": time.Now(), "LlegoAMeta": Modelo.LlegoAMeta})
 
 	return updatedResultado, nil
 
