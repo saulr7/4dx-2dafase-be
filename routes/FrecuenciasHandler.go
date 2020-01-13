@@ -10,13 +10,6 @@ import (
 
 func GetFrecuencias(w http.ResponseWriter, r *http.Request) {
 
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-
-	w.Header().Set("Access-Control-Expose-Headers: Content-Length", "X-JSON")
-
-	w.Header().Set("Access-Control-Allow-Headers", "*")
-	w.Header().Set("Content-type", "Application/json")
-
 	var usuarioModel, erro = services.GetFrecuencias()
 
 	if erro != nil {

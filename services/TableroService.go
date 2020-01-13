@@ -1,8 +1,6 @@
 package services
 
 import (
-	"fmt"
-
 	"../config"
 	"../models"
 )
@@ -46,11 +44,9 @@ func TableroColaborador(colaboradorId string, mesId string) ([]models.Tablero, e
 
 		tablero.Periodicidad = frecuencia.FrecuenciaId
 
-		db.Raw("SELECT Mes, Valor, Meta, Unidad FROM dbResultadosMCI where idMCI = ?", dato.IdMCI).Scan(&resultadosMCI)
+		db.Raw("SELECT Mes, Valor, Meta, Unidad FROM dbResultadosMCI where idMCI = ? AND Anio = YEAR(GETDATE())", dato.IdMCI).Scan(&resultadosMCI)
 
 		for _, resultado := range resultadosMCI {
-			fmt.Println(resultado)
-
 			tablero.ResultadosMCI = append(tablero.ResultadosMCI, resultado)
 			tablero.Unidad = resultado.Unidad
 		}
@@ -89,4 +85,36 @@ func TableroColaborador(colaboradorId string, mesId string) ([]models.Tablero, e
 	}
 
 	return tableros, nil
+}
+
+func GetEstiloTablero(idEmpleado string) (string, error) {
+
+	type resultEstilo struct {
+		Estilo string `gorm:"column:Estilo"`
+	}
+
+	var result resultEstilo
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("EXEC usp_GetEstiloTablero ?", idEmpleado).Scan(&result)
+
+	return result.Estilo, nil
+}
+
+func UpdateEstiloTablero(modelo models.ActualizarEstiloTablero) (string, error) {
+
+	type resultEstilo struct {
+		Estilo string `gorm:"column:Estilo"`
+	}
+
+	var result resultEstilo
+
+	db := config.ConnectDB()
+	defer db.Close()
+
+	db.Raw("EXEC usp_ActualizarEstiloTablero ?, ?", modelo.Colaborador, modelo.Estilo).Scan(&result)
+
+	return result.Estilo, nil
 }

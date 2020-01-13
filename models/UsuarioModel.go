@@ -17,7 +17,4 @@ type Usuario struct {
 	CambiarClave      bool   `gorm:"column:CambiarClave"`
 	EsLider           bool   `gorm:"column:EsLider"`
 	SubAreaId         int    `gorm:"column:idSubArea"`
-
-	// Empleado		UsrCod		UsrNom							Correo				PerfilCod	PerfilDesc			zona	Zona_Descripcion	CambiarClave	EsLider	idSubArea
-	// 39015		39015		Jorge Reinaldo Donaire Benitez	jorged@banpais.hn	1			Colaborador			1		I					0				0		265
 }

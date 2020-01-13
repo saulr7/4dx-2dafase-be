@@ -22,11 +22,6 @@ func Login(credenciales models.UsuarioCredenciales) (string, error) {
 		return "", errors.New("Credenciales incorrectas")
 	}
 
-	var eventosistema models.EventoDelSistema
-	eventosistema.Evento = "Inicio de sesión"
-	eventosistema.IdColaborador, _ = strconv.Atoi(credenciales.CodigoEmpleado)
-	RegistarEventoDelSistema(eventosistema)
-
 	json.Marshal(&result)
 
 	token, _ := Create_JWT(result)
