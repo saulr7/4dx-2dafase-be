@@ -55,7 +55,7 @@ func MetaMCIAdd(Modelo models.ResultadosMCI) (models.ResultadosMCI, error) {
 
 	db.Where("idResultadoMCI = ?", Modelo.IdResultadoMCI).Find(&updatedResultado)
 
-	db.Model(&updatedResultado).Where("idResultadoMCI= ?", Modelo.IdResultadoMCI).Update(map[string]interface{}{"Meta": Modelo.Meta, "FechaModificacion": time.Now(), " Autorizado": false})
+	db.Model(&updatedResultado).Where("idResultadoMCI= ?", Modelo.IdResultadoMCI).Update(map[string]interface{}{"Meta": Modelo.Meta, "FechaModificacion": time.Now(), "Autorizado": false})
 
 	return updatedResultado, nil
 }

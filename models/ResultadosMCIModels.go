@@ -13,6 +13,7 @@ type ResultadosMCI struct {
 	Valor             float32   `gorm:"column:Valor"`
 	Unidad            string    `gorm:"column:Unidad"`
 	Autorizado        bool      `gorm:"column:Autorizado"`
+	AutorizaIngreso   bool      `gorm:"column:AutorizaIngreso"`
 	FechaModificacion time.Time `gorm:"column:FechaModificacion"`
 	Meta              float32   `gorm:"column:Meta"`
 	IdPeriocidad      int       `gorm:"column:idFrecuencia"`
