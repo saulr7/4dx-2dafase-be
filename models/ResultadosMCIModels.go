@@ -5,15 +5,15 @@ import (
 )
 
 type ResultadosMCI struct {
-	IdResultadoMCI    int       `gorm:"column:idResultadoMCI"`
-	IdMCI             int       `gorm:"column:idMCI"`
-	MCI               string    `gorm:"column:MCI"`
-	Anio              int       `gorm:"column:Anio"`
-	Mes               int       `gorm:"column:Mes"`
-	Valor             float32   `gorm:"column:Valor"`
-	Unidad            string    `gorm:"column:Unidad"`
-	Autorizado        bool      `gorm:"column:Autorizado"`
-	AutorizaIngreso   bool      `gorm:"column:AutorizaIngreso"`
+	IdResultadoMCI    int     `gorm:"column:idResultadoMCI"`
+	IdMCI             int     `gorm:"column:idMCI"`
+	MCI               string  `gorm:"column:MCI"`
+	Anio              int     `gorm:"column:Anio"`
+	Mes               int     `gorm:"column:Mes"`
+	Valor             float32 `gorm:"column:Valor"`
+	Unidad            string  `gorm:"column:Unidad"`
+	Autorizado        bool    `gorm:"column:Autorizado"`
+	bool              `gorm:"column:AutorizaIngreso"`
 	FechaModificacion time.Time `gorm:"column:FechaModificacion"`
 	Meta              float32   `gorm:"column:Meta"`
 	IdPeriocidad      int       `gorm:"column:idFrecuencia"`

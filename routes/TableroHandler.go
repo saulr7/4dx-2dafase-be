@@ -68,9 +68,7 @@ func UpdateEstiloTableroHanlder(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	newEstilo.Colaborador = token.Usuario.EmpleadoId
-
-	fmt.Println("Usuario" + token.Usuario.EmpleadoId)
+	newEstilo.Colaborador = token.Usuario.Empleado
 
 	var tablero, err = services.UpdateEstiloTablero(newEstilo)
 

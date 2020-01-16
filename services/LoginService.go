@@ -22,6 +22,8 @@ func Login(credenciales models.UsuarioCredenciales) (string, error) {
 		return "", errors.New("Credenciales incorrectas")
 	}
 
+	LogToFile("Inicio de sesión:"+ credenciales.CodigoEmpleado, nil)
+
 	json.Marshal(&result)
 
 	token, _ := Create_JWT(result)

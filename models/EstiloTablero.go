@@ -7,6 +7,6 @@ type EstiloTableroModel struct {
 }
 
 type ActualizarEstiloTablero struct {
-	Colaborador string
+	Colaborador int
 	Estilo      string
 }
